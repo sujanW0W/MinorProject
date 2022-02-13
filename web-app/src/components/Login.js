@@ -1,14 +1,16 @@
 import React from 'react'
-import TextField from '@mui/material/TextField'
-
-import Button from '@mui/material/Button'
+import {TextField, Button, Link} from '@mui/material'
 import './Login.css'
 
-function Login() {
+function Login(props) {
 
   return (
     <div>
         <TextField 
+            name='userName'
+            value={props.data.userName}
+            onChange={props.handleChange}
+
             variant='filled'
             margin='normal'
             required
@@ -17,8 +19,11 @@ function Login() {
             fullWidth
         />
         <TextField 
-            variant='filled'
-            
+            name = 'password'
+            value={props.data.password}
+            onChange={props.handleChange}
+
+            variant='filled'            
             required
             label = 'Password'
             placeholder='Enter Password'
@@ -29,39 +34,53 @@ function Login() {
 
         <div style={{margin:'10px 0px'}}>
             <label className = 'rememberMe'>
-            <input type="checkbox" class='check'/> Remember Me
+            <input 
+                type="checkbox" 
+                className='check'
+                name = 'rememberMe'
+                checked = {props.data.rememberMe}
+                onChange = {props.handleChange}
+            /> 
+                Remember Me
             </label>
         </div>
 
         <Button 
             type='submit' 
+            name = 'signin'
             variant = 'outlined'
-            
             fullWidth
+            onClick={props.handleSubmit}
         >
             Sign In
         </Button> 
 
-        <Button
-            type='submit'
-            variant = 'text'
-            
+        <Link 
+            href = "https://www.google.com"
+            target = '_blank'
+            title = 'Forgot Password'
+            variant = 'button'
+            underline = 'none'
         >
             Forgot Password?
-        </Button>
+        </Link>
 <br />
         <div style={{margin : '5px 0px'}}>
             <label className='rememberMe'>
                 Don't have an Account?
                 <Button
                     type='submit'
+                    name = 'signup'
                     variant='outlined'
                     fullWidth
+                    onClick={props.handleSubmit}
                 >
                     Sign Up
                 </Button>
             </label>
         </div>
+
+      
     </div>
 
     
