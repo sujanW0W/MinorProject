@@ -39,7 +39,16 @@
 
 .paper{
   margin: 40px auto;
-  padding:20px 20px 10px 20px; 
-  height: 70vh;
-  width: 45vh;
+  padding: 0px 0px 10px 0px; 
+  height: 700px;
+  width: 385px;
+}
+
+.text{
+    
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
 }

@@ -1,33 +1,43 @@
 import React from 'react'
 import {TextField, Button, Link} from '@mui/material'
 import './Login.css'
+import {Grid, Avatar} from '@mui/material';
+import LockIcon from '@mui/icons-material/Lock';
 
 function Login(props) {
 
+    const avatarStyle = {
+        backgroundColor : "#0d8b49",
+        color : "white"
+    }
+
   return (
-    <div>
+    <div style={{padding:'20px 15px 10px 15px'}}>
+        <Grid align = 'center'>
+            <Avatar style={avatarStyle}> <LockIcon /> </Avatar>
+            <h1 className='head'>Sign In</h1>   {/*In register.css */}
+        </Grid>
+
         <TextField 
             name='userName'
             value={props.data.userName}
             onChange={props.handleChange}
-
-            variant='filled'
+            variant='outlined'
             margin='normal'
-            required
+            required={true}
             label = 'Username'
             placeholder='Enter Username'
-            fullWidth
+            fullWidth={true}
         />
         <TextField 
             name = 'password'
             value={props.data.password}
             onChange={props.handleChange}
-
-            variant='filled'            
-            required
+            variant='outlined'            
+            required={true}
             label = 'Password'
             placeholder='Enter Password'
-            fullWidth
+            fullWidth={true}
             type='password'
 
         />
@@ -49,7 +59,7 @@ function Login(props) {
             type='submit' 
             name = 'signin'
             variant = 'outlined'
-            fullWidth
+            fullWidth={true}
             onClick={props.handleSubmit}
         >
             Sign In
@@ -64,16 +74,17 @@ function Login(props) {
         >
             Forgot Password?
         </Link>
-<br />
+
+        <br />
+        
         <div style={{margin : '5px 0px'}}>
             <label className='rememberMe'>
                 Don't have an Account?
                 <Button
                     type='submit'
-                    name = 'signup'
                     variant='outlined'
-                    fullWidth
-                    onClick={props.handleSubmit}
+                    fullWidth={true}
+                    onClick={()=>props.handleTabChange('event',1)}
                 >
                     Sign Up
                 </Button>
@@ -82,8 +93,6 @@ function Login(props) {
 
       
     </div>
-
-    
   )
 }
 
