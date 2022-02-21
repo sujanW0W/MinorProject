@@ -1,7 +1,12 @@
 import React from 'react'
 import './Footer.css'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import { IconButton } from '@mui/material'
 
 export default function Footer() {
+  
   return (
         <footer className='footerHead'>
             <div className="footer-content">
@@ -50,14 +55,36 @@ export default function Footer() {
             <p className=" info">Support emails- help@marketing.com,customersuport@clothing.com</p>
             <p className="info">telephone: 9803293473 9384747283</p>
             <div className="footer-social-container">
-                <div>
+                <div style={{margin: 'auto 0px'}}>
                     <a href="#" className="social-link">Terms & Services</a>
                     <a href="#" className="social-link">Privacy page</a>       
                 </div>
                 <div>
-                    <a href="#" className="social-link">instagram</a>
-                    <a href="#" className="social-link">F acebook</a>
-                    <a href="#" className="social-link">Telegram</a>
+                    <IconButton
+                        href='https://www.facebook.com'
+                    >
+                        <FacebookIcon 
+                            sx={{fontSize : '50px'}}
+                        />
+                    </IconButton>
+                    
+                    <IconButton
+                        href="https://www.instagram.com"
+                    >
+                        <InstagramIcon 
+                            sx={{fontSize : '50px'}}
+                        />
+                    </IconButton>
+                    
+                    <IconButton
+                        href="https://www.twitter.com"
+                    >
+                        <TwitterIcon 
+                            sx={{fontSize : '50px'}}
+                        />
+                    </IconButton>
+
+                    
                 </div>
             </div>
             <p className="footer-credit">clothing ,best appearls online store</p>
