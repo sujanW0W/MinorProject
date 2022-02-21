@@ -14,6 +14,11 @@ function Register(props) {
         color: "white"
     }
 
+    const registerClicked = (event) => {
+        props.handleRegister('event');
+        props.handleTabChange('event',0);
+    }
+
     return (
         <div style={{padding:'20px 15px 10px 15px'}}>
             <Grid align='center'>
@@ -180,7 +185,7 @@ function Register(props) {
                     onChange={props.handleChange}
                     required={true}
 
-                /> I accept the terms & conditions
+                /> I accept the <a href="#" className='terms'>Terms & Conditions</a>
             </label>
 
             <Button
@@ -190,10 +195,12 @@ function Register(props) {
                 variant='outlined'
                 fullWidth={true}
                 style={{ margin: '5px 0px' }}
-                onClick={props.handleRegister}
+                onClick={() => registerClicked('event')}
             >
                 Register
             </Button>
+
+            {/*After registration, the user still needs to sign in.*/}
         </div>
     )
 

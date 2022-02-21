@@ -11,6 +11,11 @@ function Login(props) {
         color : "white"
     }
 
+    const signInClicked = (event) => {
+        props.handleSubmit();
+        props.renderLogin();
+    }
+
   return (
     <div style={{padding:'20px 15px 10px 15px'}}>
         <Grid align = 'center'>
@@ -60,7 +65,7 @@ function Login(props) {
             name = 'signin'
             variant = 'outlined'
             fullWidth={true}
-            onClick={props.handleSubmit}
+            onClick={() => signInClicked()}
         >
             Sign In
         </Button> 

@@ -29,6 +29,7 @@ function LoginRegister(props) {
 
     const handleTabChange = (event, newValue) => {
         setValue(newValue);
+        props.emptyUserNameAndPwd()
     }
 
     const tabStyle = {
@@ -64,6 +65,7 @@ function LoginRegister(props) {
                         handleChange={props.handleChange}
                         handleSubmit={props.handleSubmit}
                         handleTabChange={handleTabChange}
+                        renderLogin={props.renderLogin}
                     />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
@@ -71,6 +73,7 @@ function LoginRegister(props) {
                         data={props.data}
                         handleChange={props.handleChange}
                         handleRegister={props.handleRegister}
+                        handleTabChange = {handleTabChange}
                     />
                 </TabPanel>
             </Paper>

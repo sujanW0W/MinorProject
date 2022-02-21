@@ -1,6 +1,8 @@
 import React from 'react'
 import './App.css';
 import LoginRegister from './LoginRegister'
+import Dashboard from './Dashboard'
+
 class App extends React.Component {
   
   state = {
@@ -14,7 +16,9 @@ class App extends React.Component {
     password: '',
   //  confirmPassword: '',
     rememberMe: false,
-    terms: false
+    terms: false,
+
+    login : false
   }
 
   handleChange = (event) => {
@@ -31,6 +35,15 @@ class App extends React.Component {
           [name]: value
         }
       )
+  }
+
+  emptyUserNameAndPwd = () => {
+    this.setState(
+      {
+        userName : '',
+        password : ''
+      }
+    )
   }
 
   handleSubmit = (event) => {
@@ -50,19 +63,40 @@ class App extends React.Component {
     // else {
       this.state.terms &&
         console.log(`Registered\n firstName:${this.state.firstName}\nlastName:${this.state.lastName}\nGender:${this.state.gender}\n DOB:${this.state.dob}\nPhone NUmber:${this.state.phoneNumber}\n Email:${this.state.email}\n Password${this.state.password}\nTerms:${this.state.terms}`)
-   // }
+
+        // }
 
   }
+
+  renderLogin = (event) => {
+    this.setState(
+      {
+        login : !this.state.login
+      }
+    )
+  }
+    
 
 
   render() {
     return (
-      <LoginRegister
-        data={this.state}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        handleRegister={this.handleRegister}
-      />
+      <div>
+        {this.state.login ? 
+          <LoginRegister
+            data={this.state}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            handleRegister={this.handleRegister}
+            renderLogin = {this.renderLogin}
+            emptyUserNameAndPwd ={this.emptyUserNameAndPwd}
+          />
+        :
+          <Dashboard 
+            renderLogin = {this.renderLogin}
+          />
+        }
+          </div>
+      
     );
   }
 
