@@ -3,6 +3,7 @@ import './Header.css'
 import {IconButton} from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HomeDecor from '../homedecorLogo.png'
 
 export default function header(props) {
   return (
@@ -10,7 +11,7 @@ export default function header(props) {
       <nav className="navbar">
         <div className="nav">
           <a href="#">
-            <img src="" className="brand-logo" alt="Image Not Found" />
+            <img src={HomeDecor} alt='NA' />
           </a>
 
           <div className="nav-items">

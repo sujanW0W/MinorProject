@@ -28,7 +28,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">1 50% Off</span>
-                    <img src="img/card1.png" className="product-thumb" alt="" /> 
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" /> 
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -40,7 +40,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">2 50% Off</span>
-                    <img src="img/card2.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -52,7 +52,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">3 50% Off</span>
-                    <img src="img/card3.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -64,7 +64,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">4 50% Off</span>
-                    <img src="img/card4.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -76,7 +76,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">5 50% Off</span>
-                    <img src="img/card5.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -88,7 +88,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">6 50% Off</span>
-                    <img src="img/card6.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -100,7 +100,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">7 50% Off</span>
-                    <img src="img/card7.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">
@@ -112,7 +112,7 @@ export default function ScrollingProducts(props) {
             <div className="product-card">
                 <div className="product-image">
                     <span className="discount-tag">8 50% Off</span>
-                    <img src="img/card8.png" className="product-thumb" alt="" />
+                    <img src={process.env.PUBLIC_URL+'imgTemp/card2.png'} className="product-thumb" alt="" />
                     <button className="card-btn">Add To wishlist</button>
                 </div>
                 <div className="product-info">

@@ -4,13 +4,14 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { IconButton } from '@mui/material'
+import logo from '../homedecorLogo.png'
 
 export default function Footer() {
   
   return (
         <footer className='footerHead'>
             <div className="footer-content">
-                <img src="" className="logo" alt="Image NA" />
+                <img src={logo} className="logo" alt="NA" />
                 <div className="footer-ul-container">
                     <ul className="category">
                         <li className="category-title">Men</li>

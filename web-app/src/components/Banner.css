@@ -1,7 +1,7 @@
 .hero-section{
     width: 100%;
     height: calc(100vh - 120px);
-  /* background-image: url('../img/header.png');*/
+    background-image: url('D:\Project\MinorProject\web-app\public\imgTemp\header.png');
     background-size: cover;
     display: flex;
     justify-content: center;
