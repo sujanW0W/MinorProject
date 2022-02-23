@@ -4,6 +4,8 @@ import { Grid, Paper, Tabs, Tab, Box} from '@mui/material';
 import Login from './Login.js'
 import Register from './Register'
 
+import './LoginRegister.css'
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -41,10 +43,9 @@ function LoginRegister(props) {
         width: '50%'
     }
 
-
     return (
 
-        <Grid>
+        <Grid className = 'grid, bg_image' style={{overflow:'auto'}}>
             <Paper elevation={16} className='paper'>
 
                 <Box fullWidth sx={{ borderBottom: 1, borderColor: 'divider' }}>

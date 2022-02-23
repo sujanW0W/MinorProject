@@ -62,6 +62,8 @@ export default function Footer() {
                 <div>
                     <IconButton
                         href='https://www.facebook.com'
+                        target = '_blank'
+                        title = 'facebook'
                     >
                         <FacebookIcon 
                             sx={{fontSize : '50px'}}
@@ -70,6 +72,8 @@ export default function Footer() {
                     
                     <IconButton
                         href="https://www.instagram.com"
+                        target = '_blank'
+                        title = 'Instagram'
                     >
                         <InstagramIcon 
                             sx={{fontSize : '50px'}}
@@ -78,6 +82,8 @@ export default function Footer() {
                     
                     <IconButton
                         href="https://www.twitter.com"
+                        target = '_blank'
+                        title = 'Twitter'
                     >
                         <TwitterIcon 
                             sx={{fontSize : '50px'}}

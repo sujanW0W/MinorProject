@@ -1,6 +1,10 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import Banner from './Banner'
+import ScrollingProducts from './ScrollingProducts'
+import SecondContainer from './SecondContainer'
+import SecondScrollingPorducts from './SecondScrollingProducts'
 
 class Dashboard extends React.Component {
   state = {
@@ -24,6 +28,14 @@ class Dashboard extends React.Component {
     console.log(this.state.searched)
   }
 
+  handleRightScroll = (event) => {
+    console.log('Scrolled right')
+}
+
+handleLeftScroll = (event) => {
+    console.log('Scrolled left')
+}
+
  
 
   render(){
@@ -36,7 +48,19 @@ class Dashboard extends React.Component {
               renderLogin = {this.props.renderLogin}
             />
 
+            <Banner />
+            <ScrollingProducts 
+              handleLeftScroll = {this.handleLeftScroll}
+              handleRightScroll = {this.handleRightScroll}
+            />
+            <SecondContainer />
+            <SecondScrollingPorducts 
+               handleLeftScroll = {this.handleLeftScroll}
+               handleRightScroll = {this.handleRightScroll}
+            />
+
             <Footer />
+
           
       </div>
 

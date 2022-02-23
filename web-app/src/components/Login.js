@@ -7,7 +7,7 @@ import LockIcon from '@mui/icons-material/Lock';
 function Login(props) {
 
     const avatarStyle = {
-        backgroundColor : "#0d8b49",
+        backgroundColor : "#363636",
         color : "white"
     }
 
