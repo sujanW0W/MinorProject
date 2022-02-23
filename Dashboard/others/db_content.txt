@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles.css">
+	<title>Dashboard</title>
+</head>
+<body>
+
+<!-- Image grid for products page -->
+<div class="row">
+  <div class="column">
+    <a href="#">
+    <img src="images/profile.png" alt="a" style="width: 250px; height: 200px">
+	<div class="caption">Caption 1</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="b" style="width: 250px; height: 200px">
+	<div class="caption">Caption 2</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="c" style="width: 250px; height: 200px">
+	<div class="caption">Caption 3</div>
+    </a>
+  </div>
+  <div class="column">
+    <a href="#">
+    <img src="images/profile.png" alt="a" style="width: 250px; height: 200px">
+	<div class="caption">Caption 1</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="b" style="width: 250px; height: 200px">
+	<div class="caption">Caption 2</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="c" style="width: 250px; height: 200px">
+	<div class="caption">Caption 3</div>
+    </a>
+  </div>
+  <div class="column">
+    <a href="#">
+    <img src="images/profile.png" alt="a" style="width: 250px; height: 200px">
+	<div class="caption">Caption 1</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="b" style="width: 250px; height: 200px">
+	<div class="caption">Caption 2</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="c" style="width: 250px; height: 200px">
+	<div class="caption">Caption 3</div>
+    </a>
+  </div>
+  <div class="column">
+    <a href="#">
+    <img src="images/profile.png" alt="a" style="width: 250px; height: 200px">
+	<div class="caption">Caption 1</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="b" style="width: 250px; height: 200px">
+	<div class="caption">Caption 2</div>
+    </a>
+    <a href="#">
+    <img src="images/profile.png" alt="c" style="width: 250px; height: 200px">
+	<div class="caption">Caption 3</div>
+    </a>
+  </div>
+</div>
+
+<!-- Table for customers page -->
+<div style="overflow-x:auto;">
+<table>
+  <tr>
+    <th>Customer ID</th>
+    <th>Customer Name</th>
+    <th>Order Date</th>
+    <th>Payment</th>	
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Ram</td>
+    <td>Jan 8th, 2022</td>
+    <td>Cash on Delivery</td>
+  </tr>
+</table>
+</div>
+
+<!-- Table for orders page -->
+<div style="overflow-x:auto;">
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Category</th>	
+    <th>Quantity</th>    
+    <th>Price</th>
+    <th>Deliver Address</th>
+  </tr>
+  <tr>
+    <td>1001</td>
+    <td>59</td>
+    <td>Chair</td>
+    <td>Furniture</td>
+    <td>2</td>
+    <td>Rs. 1500</td>
+    <td>Kathmandu</td>
+  </tr>
+</table>
+</div>
+
+<!-- Table for transactions page -->
+<div style="overflow-x:auto;">
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Payment Method</th>
+    <th>Payment Amount</th>
+    <th>Transaction Date</th>
+  </tr>
+  <tr>
+    <td>1001</td>
+    <td>Cash on Delivery</td>
+    <td>Rs. 3000</td>
+    <td>Jan 9th, 2022</td>
+  </tr>
+</table>
+</div>
+
+</body>
+</html>
