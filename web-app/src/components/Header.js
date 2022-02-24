@@ -4,13 +4,34 @@ import {IconButton} from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeDecor from '../homedecorLogo.png'
+import UserIconDropMenu from './UserIconDropMenu'
 
-export default function header(props) {
+export default function Header(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };  
+
+
+  const handleLogin = (event) => {
+    props.renderLogin()
+  }
+
+  const handleLogout = (event) => {
+    console.log('Logout');
+    props.handleLoggedOut();
+    handleClose();
+  }
+
   return (
     <div>
       <nav className="navbar">
         <div className="nav">
-          <a href="#">
+          <a href="#" onClick={() => props.handleLogoClick()}>
             <img src={HomeDecor} alt='NA' />
           </a>
 
@@ -35,13 +56,24 @@ export default function header(props) {
             </div>
 
             <IconButton
-              onClick = {() => props.renderLogin('event')}
+              // onClick = {() => props.renderLogin('event')}
+              onClick={handleClick}
             >
               <AccountCircleIcon 
-                sx = {{color : '#383838', marginLeft : '20px'}}
+                sx = {{color : '#383838'}}
                 fontSize = 'large'
               />
             </IconButton>
+
+            <UserIconDropMenu 
+              handleClose = {handleClose}
+              open = {open}
+              anchorEl = {anchorEl}
+              handleLogin = {handleLogin}
+              loggedIn = {props.loggedIn}
+              handleLogout = {handleLogout}
+            />
+              
 
             <IconButton
               onClick = {() => console.log('Working'), () => console.log('hello')}
@@ -56,10 +88,11 @@ export default function header(props) {
         </div>
         <ul className="links-container">
           <li className="link-item"><a href="#" className="link">Home</a></li>
-          <li className="link-item"><a href="#" className="link">Women</a></li>
-          <li className="link-item"><a href="#" className="link">Kids</a></li>
-          <li className="link-item"><a href="#" className="link">Men</a></li>
-          <li className="link-item"><a href="#" className="link">Acessesories</a></li>
+          <li className="link-item"><a href="#" className="link">Bathroom</a></li>
+          <li className="link-item"><a href="#" className="link">Kitchen</a></li>
+          <li className="link-item"><a href="#" className="link">Art</a></li>
+          <li className="link-item"><a href="#" className="link">Furniture</a></li>
+          <li className="link-item"><a href="#" className="link">Accessories</a></li>
         </ul>
       </nav>
     </div>

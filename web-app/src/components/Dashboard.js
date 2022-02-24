@@ -4,17 +4,19 @@ import Footer from './Footer'
 import Banner from './Banner'
 import ScrollingProducts from './ScrollingProducts'
 import SecondContainer from './SecondContainer'
-import SecondScrollingPorducts from './SecondScrollingProducts'
+
+import SelectedProduct from './SelectedProduct'
 
 class Dashboard extends React.Component {
   state = {
-    searched : ''
+    searched : '',
+    productDetail : false
   }
 
   componentDidMount() {
     const productContainer =[...document.querySelectorAll('.product-container')];
-    const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
-    const preBtn = [...document.querySelectorAll('.pre-btn')];
+    const nxtBtn = [...document.querySelectorAll('#nxt-btn')];
+    const preBtn = [...document.querySelectorAll('#pre-btn')];
 
     productContainer.forEach((item, i) => {
         let containerDimesions=item.getBoundingClientRect();
@@ -47,15 +49,23 @@ class Dashboard extends React.Component {
     console.log(this.state.searched)
   }
 
-  handleRightScroll = (event) => {
-    console.log('Scrolled right')
+
+
+handleProductClick = (event) => {
+  this.setState(
+    {
+      productDetail : true
+    }
+  )
 }
 
-handleLeftScroll = (event) => {
-    console.log('Scrolled left')
+handleLogoClick = (event) => {
+  this.setState(
+    {
+      productDetail : false
+    }
+  )
 }
-
- 
 
   render(){
     return(
@@ -65,21 +75,34 @@ handleLeftScroll = (event) => {
               handleSearch = {this.handleSearch}
               handleSearchButton = {this.handleSearchButton}
               renderLogin = {this.props.renderLogin}
+              handleLogoClick = {this.handleLogoClick}
+              loggedIn = {this.props.loggedIn}
+              handleLoggedOut = {this.props.handleLoggedOut}
+
             />
 
-            <Banner />
-            <ScrollingProducts 
-              handleLeftScroll = {this.handleLeftScroll}
-              handleRightScroll = {this.handleRightScroll}
-            />
-            <SecondContainer />
-            <SecondScrollingPorducts 
-               handleLeftScroll = {this.handleLeftScroll}
-               handleRightScroll = {this.handleRightScroll}
-            />
+            {this.state.productDetail ? 
+              <SelectedProduct />
+            :
+            <div>
+              <Banner />
+              <ScrollingProducts 
+               
+                handleProductClick = {this.handleProductClick}
+              />
+              <SecondContainer 
+                handleProductClick = {this.handleProductClick}
+              />
+              <ScrollingProducts
+                
+                handleProductClick = {this.handleProductClick}
+              />
+            </div>
+            }
 
             <Footer />
 
+            {/* <SelectedProduct /> */}
           
       </div>
 

@@ -10,7 +10,7 @@ export default function Footer() {
   
   return (
         <footer className='footerHead'>
-            <div className="footer-content">
+            {/* <div className="footer-content">
                 <img src={logo} className="logo" alt="NA" />
                 <div className="footer-ul-container">
                     <ul className="category">
@@ -42,7 +42,7 @@ export default function Footer() {
 
                     </ul>
                 </div>
-            </div>
+            </div> */}
             <p className="footer-title">about company</p>
             <p className="info">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere numquam ipsam, sed explicabo

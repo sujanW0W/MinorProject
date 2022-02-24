@@ -74,8 +74,8 @@ function Register(props) {
                     <input
                         type="radio"
                         name='gender'
-                        value='male'
-                        checked={props.data.gender === 'male'}
+                        value='m'
+                        checked={props.data.gender === 'm'}
                         onChange={props.handleChange}
 
                         style={{ height: '15px', width: '15px' }}
@@ -86,8 +86,8 @@ function Register(props) {
                     <input
                         type="radio"
                         name='gender'
-                        value='female'
-                        checked={props.data.gender === 'female'}
+                        value='f'
+                        checked={props.data.gender === 'f'}
                         onChange={props.handleChange}
                         style={{ height: '15px', width: '15px' }}
                     />
@@ -97,8 +97,8 @@ function Register(props) {
                     <input
                         type="radio"
                         name='gender'
-                        value='others'
-                        checked={props.data.gender === 'others'}
+                        value='o'
+                        checked={props.data.gender === 'o'}
                         onChange={props.handleChange}
 
                         style={{ height: '15px', width: '15px' }}

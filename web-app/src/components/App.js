@@ -18,7 +18,8 @@ class App extends React.Component {
     rememberMe: false,
     terms: false,
 
-    login : false
+    loginPage : false,
+    loggedIn : false
   }
 
   handleChange = (event) => {
@@ -47,6 +48,11 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+    this.setState(
+      {
+        loggedIn : !this.state.loggedIn
+      }
+    )
     console.log(`Username : ${this.state.userName}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
   }
 
@@ -71,17 +77,24 @@ class App extends React.Component {
   renderLogin = (event) => {
     this.setState(
       {
-        login : !this.state.login
+        loginPage : !this.state.loginPage
       }
     )
   }
     
+  handleLoggedOut = (event) => {
+    this.setState(
+      {
+        loggedIn : !this.state.loggedIn
+      }
+    )
+  }
 
 
   render() {
     return (
       <div>
-        {this.state.login ? 
+        {this.state.loginPage ? 
           <LoginRegister
             data={this.state}
             handleChange={this.handleChange}
@@ -93,6 +106,9 @@ class App extends React.Component {
         :
           <Dashboard 
             renderLogin = {this.renderLogin}
+            loggedIn = {this.state.loggedIn}
+            handleLoggedOut={this.handleLoggedOut}
+
           />
         }
           </div>

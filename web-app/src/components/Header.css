@@ -24,7 +24,7 @@
 
 }
 .search{
-    width: 500px;
+    width: 550px;
     display: flex;
 }
 .search-box{
@@ -51,6 +51,7 @@
     font-size: 15px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-right: 20px;
 }
 .search-box::placeholder{
     color: #a9a9a9;
@@ -70,6 +71,9 @@
     justify-content: center;
     list-style: none;
     border-top: 1px solid #d1d1d1;
+    margin: auto;
+    
+    
 }
 
 .link{
