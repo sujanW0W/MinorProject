@@ -1,0 +1,33 @@
+#spring.datasource.url= jdbc:postgresql://localhost:5432/registration
+#spring.datasource.username=postgres
+#spring.datasource.password=8956
+#spring.jpa.hibernate.ddl-auto= create-drop
+#spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+#spring.jpa.properties.hibernate.format_sql=true
+##spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL81Dialect
+#
+#server.error.include-message=always
+
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    password: root
+    url: jdbc:postgresql://localhost:5432/registration
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+
+
