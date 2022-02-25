@@ -1,0 +1,60 @@
+body{
+    width: 100%;
+    display: block;
+    min-height:auto ;
+    padding: 0 5vw;
+    position: relative;
+}
+
+.logo{
+    margin: 20px auto 50px;
+}
+
+/* become seller*/
+
+.become-seller{
+    border-radius: 10px;
+    background: #fff;
+    padding: 30px;
+
+}
+.heading{
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+.des{
+    margin: 20px 0;
+    text-transform: capitalize;
+    line-height:25px ;
+}
+.hide{
+    display: none;
+}
+.btn{
+    border: none;
+    outline: none;
+    background:#383838 ;
+    color: #fff;
+    padding: 10px 30px;
+    text-transform: capitalize;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+label{
+    text-transform: capitalize;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #383838;
+}
+
+label a{
+    color: #383838;
+}
+
+
