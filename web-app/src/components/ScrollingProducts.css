@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.product-thumb:hover{
+    transform: scale(1.1);
+}
+
 .discount-tag{
     position: absolute;
     background-color: #fff;
@@ -85,7 +89,6 @@
     width: 100%;
     height: 120px;
     
-
 }
 .product-brand{
     margin: 10px 0px;

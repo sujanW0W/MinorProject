@@ -1,5 +1,5 @@
 .bg_image {
-    background: url('D:\Project\MinorProject\web-app\public\images\bg_login.jpg') no-repeat center center fixed;
+    background: url('../../public/images/bg_login.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

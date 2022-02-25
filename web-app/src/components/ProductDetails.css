@@ -8,9 +8,11 @@
     width: 500px;
     height: 500px;
     position: relative;
-    background-size: cover;
-
+    display: flex;
+    justify-content: center;
 }
+
+
 .product-images{
     position: absolute;
     bottom: 20px;

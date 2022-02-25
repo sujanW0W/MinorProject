@@ -14,8 +14,8 @@ export default function ProductDetails(props) {
     <div>
         <section className="product-details">
             <div className="image-slider">
-                <img src={process.env.PUBLIC_URL+props.data[value]} alt="" />
-                <div className="product-images">
+                <img src={process.env.PUBLIC_URL+props.data[value]} alt="" className='fullImg'/>
+                <div className="product-images" >
                     <img 
                         src={process.env.PUBLIC_URL+props.data[0]} 
                         className="active" 
