@@ -4,33 +4,36 @@ import Footer from './Footer'
 import Banner from './Banner'
 import ScrollingProducts from './ScrollingProducts'
 import SecondContainer from './SecondContainer'
+import SecondScrollingProducts from './SecondScrollingProducts'
 
 import SelectedProduct from './SelectedProduct'
 
 class Dashboard extends React.Component {
   state = {
     searched : '',
-    productDetail : false
+    productDetail : false,
+    firstImage : '',
+	kind : ''
   }
 
-  componentDidMount() {
-    const productContainer =[...document.querySelectorAll('.product-container')];
-    const nxtBtn = [...document.querySelectorAll('#nxt-btn')];
-    const preBtn = [...document.querySelectorAll('#pre-btn')];
+//   componentDidMount() {
+//     const productContainer =[...document.querySelectorAll('.product-container')];
+//     const nxtBtn = [...document.querySelectorAll('#nxt-btn')];
+//     const preBtn = [...document.querySelectorAll('#pre-btn')];
 
-    productContainer.forEach((item, i) => {
-        let containerDimesions=item.getBoundingClientRect();
-        let containerWidth= containerDimesions.width;
+//     productContainer.forEach((item, i) => {
+//         let containerDimesions=item.getBoundingClientRect();
+//         let containerWidth= containerDimesions.width;
 
-        nxtBtn[i].addEventListener('click',()=>{
-            item.scrollLeft += containerWidth;
-        })
+//         nxtBtn[i].addEventListener('click',()=>{
+//             item.scrollLeft += containerWidth;
+//         })
 
-        preBtn[i].addEventListener('click',()=>{
-            item.scrollLeft -= containerWidth;
-        })
-    })
-}
+//         preBtn[i].addEventListener('click',()=>{
+//             item.scrollLeft -= containerWidth;
+//         })
+//     })
+// }
 
   handleSearch = (event) => {
     if(event.key === 'Enter'){
@@ -51,10 +54,12 @@ class Dashboard extends React.Component {
 
 
 
-handleProductClick = (event) => {
+handleProductClick = (event,firstImage,kind) => {
   this.setState(
     {
-      productDetail : true
+      productDetail : true,
+	  firstImage : firstImage,
+	  kind : kind
     }
   )
 }
@@ -82,7 +87,13 @@ handleLogoClick = (event) => {
             />
 
             {this.state.productDetail ? 
-              <SelectedProduct />
+              <SelectedProduct 
+				firstImage = {this.state.firstImage}
+				kind = {this.state.kind}
+
+				handleProductClick = {this.handleProductClick}
+
+              />
             :
             <div>
               <Banner />
@@ -93,7 +104,7 @@ handleLogoClick = (event) => {
               <SecondContainer 
                 handleProductClick = {this.handleProductClick}
               />
-              <ScrollingProducts
+              <SecondScrollingProducts
                 
                 handleProductClick = {this.handleProductClick}
               />
@@ -101,8 +112,6 @@ handleLogoClick = (event) => {
             }
 
             <Footer />
-
-            {/* <SelectedProduct /> */}
           
       </div>
 

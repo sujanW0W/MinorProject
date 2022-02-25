@@ -74,8 +74,8 @@ function Register(props) {
                     <input
                         type="radio"
                         name='gender'
-                        value='m'
-                        checked={props.data.gender === 'm'}
+                        value='male'
+                        checked={props.data.gender === 'male'}
                         onChange={props.handleChange}
 
                         style={{ height: '15px', width: '15px' }}
@@ -86,8 +86,8 @@ function Register(props) {
                     <input
                         type="radio"
                         name='gender'
-                        value='f'
-                        checked={props.data.gender === 'f'}
+                        value='female'
+                        checked={props.data.gender === 'female'}
                         onChange={props.handleChange}
                         style={{ height: '15px', width: '15px' }}
                     />
@@ -97,8 +97,8 @@ function Register(props) {
                     <input
                         type="radio"
                         name='gender'
-                        value='o'
-                        checked={props.data.gender === 'o'}
+                        value='others'
+                        checked={props.data.gender === 'others'}
                         onChange={props.handleChange}
 
                         style={{ height: '15px', width: '15px' }}
@@ -110,8 +110,8 @@ function Register(props) {
             <TextField
                 type='date'
                 variant='outlined'
-                name='dob'
-                value={props.data.dob}
+                name='dateOfBirth'
+                value={props.data.dateOfBirth}
                 onChange={props.handleChange}
 
                 placeholder='Enter Date'

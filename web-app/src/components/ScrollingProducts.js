@@ -24,11 +24,12 @@ export default function ScrollingProducts(props){
                 {/*Yesari Map garne. yesko data chahi jaba item enter garcha taba yini details magne and tei details yeta fetch garne.*/}
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art0.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
                 />
 
                 {/* <div className="product-card">
@@ -46,11 +47,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art1.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
                 
                 {/* <div className="product-card">
@@ -68,11 +71,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art2.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
 
                 {/* <div className="product-card">
@@ -90,11 +95,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art3.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
                 
                 {/* <div className="product-card">
@@ -112,11 +119,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art4.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
 
                 {/* <div className="product-card">
@@ -134,11 +143,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art5.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
 
                 {/* <div className="product-card">
@@ -156,11 +167,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art6.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
 
                 {/* <div className="product-card">
@@ -178,11 +191,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art7.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                 />
                 {/* <div className="product-card">
                     <div className="product-image">
@@ -200,11 +215,13 @@ export default function ScrollingProducts(props){
 
                 <ProductCard 
                     discount = '50% Off'
-                    img = {process.env.PUBLIC_URL+'imgTemp/card1.png'}
+                    img = 'images/art8.jpg'
                     brand = 'Brand'
                     shortLine = 'A short line About product'
                     price = '100'
                     handleProductClick = {props.handleProductClick}
+                    kind = '0'
+
                   />
             </div> 
         </section>  

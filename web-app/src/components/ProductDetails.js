@@ -21,7 +21,7 @@ export default function ProductDetails(props) {
                         className="active" 
                         alt="NA" 
                         onClick={() => handleImageClick('event',0)}
-                    />
+                    /> 
                     <img 
                         src={process.env.PUBLIC_URL+props.data[1]} 
                         alt="NA" 

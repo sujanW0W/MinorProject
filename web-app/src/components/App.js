@@ -8,10 +8,10 @@ class App extends React.Component {
   state = {
     firstName: '',
     lastName: '',
+    email:'',
+    dateOfBirth:'',
+    phoneNumber:'',
     gender: '',
-    dob: '',
-    email: '',
-    phoneNumber: '',
     userName: '',
     password: '',
   //  confirmPassword: '',
@@ -57,6 +57,7 @@ class App extends React.Component {
   }
 
   handleRegister = (event) => {
+      const {firstName,lastName,email,dateOfBirth,phoneNumber,gender,userName,password} = this.state;
     // if (this.state.password !== this.state.confirmPassword) {
 
     //   this.setState(
@@ -68,13 +69,12 @@ class App extends React.Component {
     // }
     // else {
       this.state.terms &&
-        console.log(`Registered\n firstName:${this.state.firstName}\nlastName:${this.state.lastName}\nGender:${this.state.gender}\n DOB:${this.state.dob}\nPhone NUmber:${this.state.phoneNumber}\n Email:${this.state.email}\n Password${this.state.password}\nTerms:${this.state.terms}`)
-
+        console.log(`Registered\nfirstName:${firstName}\nlastName:${lastName}\nemail:${email}\ndateOfBirth:${dateOfBirth}\nphoneNumber:${phoneNumber}\ngender:${gender}\nuserName:${userName}\npassword:${password}\n`)
         // }
 
   }
 
-  renderLogin = (event) => {
+  renderLogin = (event) => { 
     this.setState(
       {
         loginPage : !this.state.loginPage
