@@ -63,9 +63,13 @@ class App extends React.Component {
 		// 	mode : "cors",
 		// 	headers : {"Content-Type":"application/json"}
 		// })
-		fetch("http://localhost:8080/api/v1/registration")  //token=[somekind of string] halera gareko thiyo postman ma. tyo string input liyera halnu parcha hola. [address]+string garera complete address banaunu parcha jasto cha.
-		.then(response => response.json())
-		.then(data => console.log(data))
+		// fetch("http://localhost:8080/api/v1/registration")  //token=[somekind of string] halera gareko thiyo postman ma. tyo string input liyera halnu parcha hola. [address]+string garera complete address banaunu parcha jasto cha.
+		// .then(response => response.json())
+		// .then(data => console.log(data))
+
+		fetch("http://localhost:8080/api/v1/registration")
+		.then((response)=>response.json())
+		.then((data)=>console.log(data))
 
     this.setState(
       {
