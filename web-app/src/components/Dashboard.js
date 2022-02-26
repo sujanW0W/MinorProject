@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
     searched : '',
     productDetail : false,
     firstImage : '',
-	kind : ''
+	  kind : ''
   }
 
 //   componentDidMount() {

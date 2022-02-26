@@ -48,15 +48,36 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+
+	const {userName,password} = this.state;
+
+	const newUser ={userName,password}
+
+	// const setNewUser=(data)=>{
+	// 	newUser.userName = data.userName
+	// 	newUser.password = data.password
+	// }
+
+//doubt	// fetch("http://localhost:8080/api/v1/registration", {
+		// 	method : "GET",
+		// 	mode : "cors",
+		// 	headers : {"Content-Type":"application/json"}
+		// })
+		fetch("http://localhost:8080/api/v1/registration")  //token=[somekind of string] halera gareko thiyo postman ma. tyo string input liyera halnu parcha hola. [address]+string garera complete address banaunu parcha jasto cha.
+		.then(response => response.json())
+		.then(data => console.log(data))
+
     this.setState(
       {
         loggedIn : !this.state.loggedIn
       }
     )
-    console.log(`Username : ${this.state.userName}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
+   // console.log(`Username : ${this.state.userName}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
   }
 
   handleRegister = (event) => {
+//	event.preventDefault();
+
       const {firstName,lastName,email,dateOfBirth,phoneNumber,gender,userName,password} = this.state;
     // if (this.state.password !== this.state.confirmPassword) {
 
@@ -68,10 +89,21 @@ class App extends React.Component {
     //   )
     // }
     // else {
-      this.state.terms &&
-        console.log(`Registered\nfirstName:${firstName}\nlastName:${lastName}\nemail:${email}\ndateOfBirth:${dateOfBirth}\nphoneNumber:${phoneNumber}\ngender:${gender}\nuserName:${userName}\npassword:${password}\n`)
+  //    this.state.terms &&
+   //     console.log(`Registered\nfirstName:${firstName}\nlastName:${lastName}\nemail:${email}\ndateOfBirth:${dateOfBirth}\nphoneNumber:${phoneNumber}\ngender:${gender}\nuserName:${userName}\npassword:${password}\n`)
         // }
 
+
+	const newUser = {firstName,lastName,email,dateOfBirth,phoneNumber,gender,userName,password}
+
+	fetch(
+		"http://localhost:8080/api/v1/registration",{
+			method:"POST",
+			headers:{"Content-Type":"application/json"},
+			body:JSON.stringify(newUser)
+		}).then(
+			() => console.log('New User Registered.')
+		)
   }
 
   renderLogin = (event) => { 

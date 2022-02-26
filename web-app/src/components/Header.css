@@ -57,7 +57,7 @@
     color: #a9a9a9;
 }
 
-.nav-items a{
+.nav-items {
     margin-left: 20px;
 
 }
@@ -89,4 +89,16 @@
 
 .link:hover{
     opacity: 1;
+}
+
+.profileName {
+    display: inline;
+    text-transform: capitalize;
+    font-size: 17px;
+    margin-right : 10px;
+    cursor: pointer; 
+}
+
+.profileName:hover{
+    text-decoration: underline;
 }

@@ -12,8 +12,8 @@ function Login(props) {
     }
 
     const signInClicked = (event) => {
-        props.handleSubmit();
-        props.renderLogin();
+        props.handleSubmit('event');
+        props.renderLogin('event');
     }
 
   return (

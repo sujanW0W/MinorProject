@@ -19,7 +19,7 @@ export default function Header(props) {
 
   const handleLogin = (event) => {
     props.renderLogin()
-  }
+  } 
 
   const handleLogout = (event) => {
     console.log('Logout');
@@ -55,15 +55,20 @@ export default function Header(props) {
               </button>
             </div>
 
+            <div
+				className = 'profile-div'
+              	onClick={handleClick}
+            >
             <IconButton
               // onClick = {() => props.renderLogin('event')}
-              onClick={handleClick}
             >
               <AccountCircleIcon 
                 sx = {{color : '#383838'}}
                 fontSize = 'large'
               />
             </IconButton>
+			{props.loggedIn	&&	<p className='profileName' onClick={handleClick}>userName</p>}
+            </div>
 
             <UserIconDropMenu 
               handleClose = {handleClose}
@@ -73,7 +78,8 @@ export default function Header(props) {
               loggedIn = {props.loggedIn}
               handleLogout = {handleLogout}
             />
-              
+            
+            
 
             <IconButton
               onClick = {() => console.log('Working'), () => console.log('hello')}
