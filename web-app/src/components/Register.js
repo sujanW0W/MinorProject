@@ -38,7 +38,7 @@ function Register(props) {
                     fullWidth={true}
                     required={true}
                     style={{ width: '49%' }}
-
+                    size = 'small'
                 />
 
                 <TextField
@@ -51,6 +51,7 @@ function Register(props) {
                     fullWidth={true}
                     required={true}
                     style={{ width: '49%' }}
+                    size = 'small'
                 />
             </div>
 
@@ -65,6 +66,7 @@ function Register(props) {
                 fullWidth={true}
                 required={true}
                 style={marginStyle}
+                size = 'small'
 
             />
 
@@ -113,7 +115,7 @@ function Register(props) {
                 name='dateOfBirth'
                 value={props.data.dateOfBirth}
                 onChange={props.handleChange}
-
+                size = 'small'
                 placeholder='Enter Date'
                 fullWidth={true}
                 required={true}
@@ -132,6 +134,8 @@ function Register(props) {
                 fullWidth={true}
                 required={true}
                 style={marginStyle}
+                size = 'small'
+                className = 'numberField'
             />
 
             <TextField
@@ -144,6 +148,7 @@ function Register(props) {
                 fullWidth={true}
                 required={true}
                 style={marginStyle}
+                size = 'small'
             />
 
             <TextField
@@ -156,6 +161,7 @@ function Register(props) {
                 fullWidth={true}
                 required={true}
                 style={marginStyle}
+                size = 'small'
             />
 
             {/* <TextField
@@ -176,7 +182,8 @@ function Register(props) {
                 <label className='text' style={{ color: 'red', fontSize: '15px' }}>Password did not match <br /> </label>
             } */}
 
-            <label className='rememberMe'>
+            
+            <label className='rememberMe terms'>
                 <input
                     type="checkbox"
                     name='terms'

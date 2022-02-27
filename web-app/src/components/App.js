@@ -3,6 +3,8 @@ import './App.css';
 import LoginRegister from './LoginRegister'
 import Dashboard from './Dashboard'
 
+import Snackbar from '@mui/material/Snackbar';
+
 class App extends React.Component {
   
   state = {
@@ -19,7 +21,29 @@ class App extends React.Component {
     terms: false,
 
     loginPage : false,
-    loggedIn : false
+    loggedIn : false,
+
+	//Snackbar
+	open: false,
+    vertical: 'top',
+    horizontal: 'right'
+  }
+
+  handleSnackbar = (event) => {
+	  this.setState(
+		  {
+			  open : true
+		  }
+	  )
+	  setInterval( () => this.handleSnackbarClose(),3000 )
+  }
+
+  handleSnackbarClose = () => {
+	  this.setState(
+		  {
+			  open : false
+		  }
+	  )
   }
 
   handleChange = (event) => {
@@ -48,6 +72,8 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+
+	this.handleSnackbar();
 
 	const {userName,password} = this.state;
 
@@ -119,6 +145,7 @@ class App extends React.Component {
   }
     
   handleLoggedOut = (event) => {
+	 this.handleSnackbar()
     this.setState(
       {
         loggedIn : !this.state.loggedIn
@@ -129,25 +156,41 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.loginPage ? 
-          <LoginRegister
-            data={this.state}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            handleRegister={this.handleRegister}
-            renderLogin = {this.renderLogin}
-            emptyUserNameAndPwd ={this.emptyUserNameAndPwd}
-          />
-        :
-          <Dashboard 
-            renderLogin = {this.renderLogin}
-            loggedIn = {this.state.loggedIn}
-            handleLoggedOut={this.handleLoggedOut}
+     	 <div>
+			{this.state.loginPage ? 
+			<LoginRegister
+				data={this.state}
+				handleChange={this.handleChange}
+				handleSubmit={this.handleSubmit}
+				handleRegister={this.handleRegister}
+				renderLogin = {this.renderLogin}
+				emptyUserNameAndPwd ={this.emptyUserNameAndPwd}
+			/>
+			:
+			<Dashboard 
+				renderLogin = {this.renderLogin}
+				loggedIn = {this.state.loggedIn}
+				handleLoggedOut={this.handleLoggedOut}
 
-          />
-        }
-          </div>
+			/>
+			}
+
+			{this.state.loggedIn ? 
+			<Snackbar
+				anchorOrigin={{vertical:'top',horizontal:'right'}}
+				open={this.state.open}
+				onClose={this.handleSnackbarClose}
+				message = "Login Successful"
+				
+			/>
+			:
+			<Snackbar
+				anchorOrigin={{vertical:'top', horizontal:'right'}}
+				open={this.state.open}
+				onClose={this.handleSnackbarClose}
+				message = "Logout Successful"
+			/>}
+        </div>
       
     );
   }

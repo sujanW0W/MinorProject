@@ -33,6 +33,7 @@ function Login(props) {
             label = 'Username'
             placeholder='Enter Username'
             fullWidth={true}
+            size = 'small'
         />
         <TextField 
             name = 'password'
@@ -44,7 +45,7 @@ function Login(props) {
             placeholder='Enter Password'
             fullWidth={true}
             type='password'
-
+            size = 'small'
         />
 
         <div style={{margin:'10px 0px'}}>
@@ -94,6 +95,17 @@ function Login(props) {
                     Sign Up
                 </Button>
             </label>
+        
+        <Link
+            href='#'
+            variant='button'
+            underline='none'
+            className='back'
+            onClick = {() => props.renderLogin('event')}
+        >
+            Back To Homepage
+        </Link>
+
         </div>
 
       

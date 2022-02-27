@@ -6,7 +6,7 @@ export default function ProductCard(props) {
         <div className="product-image">
             <span className="discount-tag">{props.discount}</span>
             <img src={process.env.PUBLIC_URL + props.img} className="product-thumb" alt="" onClick={() => props.handleProductClick('event',props.img,props.kind)}/> 
-            <button className="card-btn">Add To wishlist</button>
+            <button className="card-btn">Add To Cart</button>
         </div>
         <div className="product-info">
             <h2 className="product-brand">{props.brandName}</h2>

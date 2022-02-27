@@ -43,7 +43,7 @@ export default function Footer() {
                     </ul>
                 </div>
             </div> */}
-            <p className="footer-title">about company</p>
+            <p className="footer-title">about home decor</p> 
             <p className="info">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere numquam ipsam, sed explicabo
                 eveniet impedit incidunt autem earum exercitationem consectetur quasi natus modi magnam reprehenderit
@@ -53,8 +53,8 @@ export default function Footer() {
                 consectetur adipisicing elit. Veniam facilis temporibus eveniet asperiores? Quia quas temporibus impedit
                 similique ad, nostrum praesentium laborum officia esse, repellat repudiandae architecto odio quis animi
             </p>
-            <p className=" info">Support emails- help@marketing.com,customersuport@clothing.com</p>
-            <p className="info">telephone: 9803293473 9384747283</p>
+            <p className=" info"> <span className='email'>Support emails: </span><span className='click'>support.homedecor@gmail.com </span> </p>
+            <p className="info"><span className='phone'>telephone: </span><span className='click'> 9803293473</span> , <span className='click'>9384747283 </span></p>
             <div className="footer-social-container">
                 <div style={{margin: 'auto 0px'}}>
                     <a href="#" className="social-link">Terms & Services</a>
@@ -94,7 +94,7 @@ export default function Footer() {
                     
                 </div>
             </div>
-            <p className="footer-credit">clothing ,best appearls online store</p>
+            <p className="footer-credit">Home Decor, Make Your Home Special</p>
         </footer>  
     
     )

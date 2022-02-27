@@ -49,6 +49,7 @@ function LoginRegister(props) {
             <Paper elevation={16} className='paper'>
 
                 <Box fullWidth sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    
                     <Tabs
                         value={value}
                         onChange={handleTabChange}
@@ -79,7 +80,6 @@ function LoginRegister(props) {
                 </TabPanel>
             </Paper>
         </Grid>
-
     )
 }
 

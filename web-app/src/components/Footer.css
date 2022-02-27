@@ -1,7 +1,7 @@
 .footerHead{
     position: relative;
     display: inline-block;
-    padding: 40px 100px 0px 100px;
+    padding: 20px 100px 0px 100px;
     background: #383838 ;
 }
 .footer-content{
@@ -51,8 +51,23 @@
     text-transform: capitalize;
     text-align: justify;
 }
+
+.email, .phone{
+    font-weight: bold;
+}
+
+.click{
+    text-transform: none;
+}
+
+.click:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .footer-title{
-    
+    font-size: large;
+    font-weight: bold;
     color: #fff;
 }
 

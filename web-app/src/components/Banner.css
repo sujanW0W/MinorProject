@@ -1,13 +1,18 @@
 .hero-section{
     width: 100%;
     height: calc(100vh - 120px);
-    background-image: url('../../public/images/paintings12.jpeg');
+    background-image: url('../../public/images/canvas2.jpg');
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+.slogan{   
+    font-size: 50px;
+    font-style: italic;
+}
 
 .hero-section .logo{
     height: 150px;
@@ -16,10 +21,11 @@
 }
 
 .hero-section .sub-heading{
-    margin-top: 10px;
+    margin: auto;
     text-align: center;
-    color: black;
+    color:#050605;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-transform: capitalize;
-    font-size: 35px;
+    font-size: 75px;
     font-weight: 300px;
 }

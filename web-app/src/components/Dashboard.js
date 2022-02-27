@@ -6,6 +6,8 @@ import ScrollingProducts from './ScrollingProducts'
 import SecondContainer from './SecondContainer'
 import SecondScrollingProducts from './SecondScrollingProducts'
 
+import SearchPage from './SearchPage'
+
 import SelectedProduct from './SelectedProduct'
 
 class Dashboard extends React.Component {
@@ -13,7 +15,9 @@ class Dashboard extends React.Component {
     searched : '',
     productDetail : false,
     firstImage : '',
-	  kind : ''
+	kind : '',
+
+	searchedPage : false
   }
 
 //   componentDidMount() {
@@ -48,11 +52,13 @@ class Dashboard extends React.Component {
   }
 
   handleSearchButton = (event) => {
-
+	this.setState(
+		{
+			searchedPage: true
+		}
+	)
     console.log(this.state.searched)
   }
-
-
 
 handleProductClick = (event,firstImage,kind) => {
   this.setState(
@@ -67,7 +73,8 @@ handleProductClick = (event,firstImage,kind) => {
 handleLogoClick = (event) => {
   this.setState(
     {
-      productDetail : false
+      productDetail : false,
+	  searchedPage : false
     }
   )
 }
@@ -76,38 +83,45 @@ handleLogoClick = (event) => {
     return(
       <div>
             <Header 
-              searched = {this.state.searched}
-              handleSearch = {this.handleSearch}
-              handleSearchButton = {this.handleSearchButton}
-              renderLogin = {this.props.renderLogin}
-              handleLogoClick = {this.handleLogoClick}
-              loggedIn = {this.props.loggedIn}
-              handleLoggedOut = {this.props.handleLoggedOut}
-
+				searched = {this.state.searched}
+				handleSearch = {this.handleSearch}
+				handleSearchButton = {this.handleSearchButton}
+				renderLogin = {this.props.renderLogin}
+				handleLogoClick = {this.handleLogoClick}
+				loggedIn = {this.props.loggedIn}
+				handleLoggedOut = {this.props.handleLoggedOut}
+				searchedPage = {this.state.searchedPage}
             />
 
             {this.state.productDetail ? 
-              <SelectedProduct 
-				firstImage = {this.state.firstImage}
-				kind = {this.state.kind}
+              	<SelectedProduct 
+					firstImage = {this.state.firstImage}
+					kind = {this.state.kind}
+					handleProductClick = {this.handleProductClick}
 
-				handleProductClick = {this.handleProductClick}
-
-              />
+             	/>
             :
             <div>
-              <Banner />
-              <ScrollingProducts 
-               
-                handleProductClick = {this.handleProductClick}
-              />
-              <SecondContainer 
-                handleProductClick = {this.handleProductClick}
-              />
-              <SecondScrollingProducts
-                
-                handleProductClick = {this.handleProductClick}
-              />
+				{this.state.searchedPage ?
+					<SearchPage 
+						searched = {this.state.searched}
+					/>
+				:
+				<div>
+					<Banner />
+					<ScrollingProducts 
+					
+						handleProductClick = {this.handleProductClick}
+					/>
+					<SecondContainer 
+						handleProductClick = {this.handleProductClick}
+					/>
+					<SecondScrollingProducts
+						
+						handleProductClick = {this.handleProductClick}
+					/>
+				</div>
+  				}
             </div>
             }
 

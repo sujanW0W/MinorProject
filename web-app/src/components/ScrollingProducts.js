@@ -30,7 +30,7 @@ export default function ScrollingProducts(props){
     
     return (
         <section className="product">
-            <h2 className="product-category">Best Selling</h2>
+            <h2 className="product-category">Best Selling Products</h2>
             <IconButton 
                 id="pre-btn" 
             >

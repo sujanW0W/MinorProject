@@ -27,6 +27,9 @@ export default function Header(props) {
     handleClose();
   }
 
+
+
+
   return (
     <div>
       <nav className="navbar">
@@ -93,12 +96,29 @@ export default function Header(props) {
           </div>
         </div>
         <ul className="links-container">
-          <li className="link-item"><a href="#" className="link">Home</a></li>
-          <li className="link-item"><a href="#" className="link">Bathroom</a></li>
-          <li className="link-item"><a href="#" className="link">Kitchen</a></li>
-          <li className="link-item"><a href="#" className="link">Art</a></li>
-          <li className="link-item"><a href="#" className="link">Furniture</a></li>
-          <li className="link-item"><a href="#" className="link">Accessories</a></li>
+          <li className="link-item">
+            <a href="#" className="link">Home</a>
+          </li>
+
+          <li className="link-item">
+            <a href="#" className="link">Bathroom</a>
+          </li>
+
+          	<li className="link-item">
+           		<a href="#" className="link">Kitchen</a>
+			</li>
+
+          <li className="link-item">
+            <a href="#" className="link">Art</a>
+          </li>
+
+          <li className="link-item">
+            <a href="#" className="link">Furniture</a>
+			</li>
+
+          <li className="link-item">
+            <a href="#" className="link">Accessories</a>
+          </li>
         </ul>
       </nav>
     </div>

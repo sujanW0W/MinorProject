@@ -40,7 +40,7 @@ export default function ProductDetails(props) {
                 </div>
             </div>
             <div className="details">
-                <h2 className="product-brand">calvin klein</h2>
+                <h2 className="product-brand">Art & Craft</h2>
                 <p className="product-short-des">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos cupiditate
                     aliquam non, voluptates ratione nostrum, dolorum esse dolores similique necessitatibus odio tenetur eius
                     reiciendis fugiat quisquam sit, architecto nam expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quod possimus est incidunt velit exercitationem quo modi ea! Dicta dolore eius culpa ratione suscipit incidunt magni distinctio tempore blanditiis eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis odio quae debitis nihil et adipisci, temporibus dolore nobis eligendi, enim o</p>
