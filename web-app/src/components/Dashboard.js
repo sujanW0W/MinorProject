@@ -5,19 +5,23 @@ import Banner from './Banner'
 import ScrollingProducts from './ScrollingProducts'
 import SecondContainer from './SecondContainer'
 import SecondScrollingProducts from './SecondScrollingProducts'
-
 import SearchPage from './SearchPage'
-
 import SelectedProduct from './SelectedProduct'
+import Cart from './Cart'
+import AddProduct from './AddProduct'
+import Snackbar from '@mui/material/Snackbar';
+
+
+import {
+	Routes,
+	Route,
+} from 'react-router-dom'
 
 class Dashboard extends React.Component {
   state = {
     searched : '',
-    productDetail : false,
-    firstImage : '',
-	kind : '',
-
-	searchedPage : false
+	firstImage : '',
+	kind : ''
   }
 
 //   componentDidMount() {
@@ -40,10 +44,6 @@ class Dashboard extends React.Component {
 // }
 
   handleSearch = (event) => {
-    if(event.key === 'Enter'){
-      this.handleSearchButton(event)
-    }
-
     this.setState(
       {
         searched : event.target.value
@@ -51,33 +51,39 @@ class Dashboard extends React.Component {
     )
   }
 
-  handleSearchButton = (event) => {
-	this.setState(
+  handleProductClick = (event,firstImage,kind) => {
+	  this.setState(
 		{
-			searchedPage: true
-		}
-	)
-    console.log(this.state.searched)
+		  firstImage :firstImage,
+		  kind : kind
+	  	}
+	  )
   }
 
-handleProductClick = (event,firstImage,kind) => {
-  this.setState(
-    {
-      productDetail : true,
-	  firstImage : firstImage,
-	  kind : kind
-    }
-  )
+  handleSnackbar = (event) => {
+	this.setState(
+		{
+			open : true
+		}
+	)
+	setInterval( () => this.handleSnackbarClose(),3000 )
 }
 
-handleLogoClick = (event) => {
-  this.setState(
-    {
-      productDetail : false,
-	  searchedPage : false
-    }
-  )
+handleSnackbarClose = () => {
+	this.setState(
+		{
+			open : false
+		}
+	)
 }
+
+  cartNotAvailable = (event) => {
+	  this.handleSnackbar();
+  }
+
+  AddProductNotAvailable = (event) => {
+	  this.handleSnackbar();
+  }
 
   render(){
     return(
@@ -86,46 +92,63 @@ handleLogoClick = (event) => {
 				searched = {this.state.searched}
 				handleSearch = {this.handleSearch}
 				handleSearchButton = {this.handleSearchButton}
-				renderLogin = {this.props.renderLogin}
 				handleLogoClick = {this.handleLogoClick}
 				loggedIn = {this.props.loggedIn}
 				handleLoggedOut = {this.props.handleLoggedOut}
-				searchedPage = {this.state.searchedPage}
+				cartNotAvailable = {this.cartNotAvailable}
+				AddProductNotAvailable = {this.AddProductNotAvailable}
             />
 
-            {this.state.productDetail ? 
-              	<SelectedProduct 
-					firstImage = {this.state.firstImage}
-					kind = {this.state.kind}
-					handleProductClick = {this.handleProductClick}
-
-             	/>
-            :
             <div>
-				{this.state.searchedPage ?
-					<SearchPage 
-						searched = {this.state.searched}
+				<Routes>
+					<Route
+						path = '/search'
+						element = {<SearchPage searched = {this.state.searched}/>}
 					/>
-				:
-				<div>
-					<Banner />
-					<ScrollingProducts 
+					<Route 
+						path = '/product='
+						element = {<SelectedProduct 
+										firstImage = {this.state.firstImage}
+										kind = {this.state.kind}
+										handleProductClick = {this.handleProductClick}
+									/>}
+					/>
+					<Route
+						path = '/cart'
+						element = {<Cart />}
+					/>
+					<Route 
+						path='/AddProduct'
+						element = {<AddProduct />}
+					/>
+					<Route
+						path='/*'
+						element = {
 					
-						handleProductClick = {this.handleProductClick}
+						<div>
+							<Banner />
+							<ScrollingProducts
+								handleProductClick = {this.handleProductClick}
+							/>
+							<SecondContainer
+								handleProductClick = {this.handleProductClick}
+							/>
+							<SecondScrollingProducts
+								handleProductClick = {this.handleProductClick}
+							/>
+						</div>}
 					/>
-					<SecondContainer 
-						handleProductClick = {this.handleProductClick}
-					/>
-					<SecondScrollingProducts
-						
-						handleProductClick = {this.handleProductClick}
-					/>
-				</div>
-  				}
-            </div>
-            }
+				</Routes>
 
+            </div>
             <Footer />
+
+			<Snackbar
+				anchorOrigin={{vertical:'top',horizontal:'right'}}
+				open={this.state.open}
+				onClose={this.handleSnackbarClose}
+				message = "You are not Logged IN."
+			/>
           
       </div>
 

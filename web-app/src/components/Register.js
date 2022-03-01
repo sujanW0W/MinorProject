@@ -15,8 +15,14 @@ function Register(props) {
     }
 
     const registerClicked = (event) => {
-        props.handleRegister('event');
-        props.handleTabChange('event',0);
+        const {firstName,lastName,email,phoneNumber,dateOfBirth,gender,username,password} = props.data;
+        
+        if(!firstName || !lastName || !email || !dateOfBirth || !phoneNumber || !gender || !username || !password ){
+          console.log('Data in field missing!') //Alert to be Added.
+        }else{
+            props.handleRegister('event');
+            props.handleTabChange('event',0);
+        }
     }
 
     return (
@@ -140,8 +146,8 @@ function Register(props) {
 
             <TextField
                 variant='outlined'
-                name='userName'
-                value={props.data.userName}
+                name='username'
+                value={props.data.username}
                 onChange={props.handleChange}
                 label='Username'
                 placeholder='Enter Username'

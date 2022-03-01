@@ -4,6 +4,8 @@ import './Login.css'
 import {Grid, Avatar} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 
+import {useNavigate} from 'react-router-dom'
+
 function Login(props) {
 
     const avatarStyle = {
@@ -11,9 +13,22 @@ function Login(props) {
         color : "white"
     }
 
+    const navigate = useNavigate();
+
     const signInClicked = (event) => {
-        props.handleSubmit('event');
-        props.renderLogin('event');
+        const{username,password} = props.data;
+        if(!username || !password) {
+            console.log('Field Missing') //Add alert.
+        }else{
+            navigate('/')
+            props.handleSubmit('event');
+            
+        }
+    }
+
+    const handleKeyDown = (event) => {
+        if(event.key === 'Enter')
+            signInClicked(event)
     }
 
   return (
@@ -24,16 +39,17 @@ function Login(props) {
         </Grid>
 
         <TextField 
-            name='userName'
-            value={props.data.userName}
+            name='username'
+            value={props.data.username}
             onChange={props.handleChange}
             variant='outlined'
             margin='normal'
             required={true}
-            label = 'Username'
-            placeholder='Enter Username'
+            label = 'username'
+            placeholder='Enter username'
             fullWidth={true}
             size = 'small'
+            onKeyDown={handleKeyDown}
         />
         <TextField 
             name = 'password'
@@ -46,6 +62,7 @@ function Login(props) {
             fullWidth={true}
             type='password'
             size = 'small'
+            onKeyDown={handleKeyDown}
         />
 
         <div style={{margin:'10px 0px'}}>
@@ -97,11 +114,10 @@ function Login(props) {
             </label>
         
         <Link
-            href='#'
+            href='/'
             variant='button'
             underline='none'
             className='back'
-            onClick = {() => props.renderLogin('event')}
         >
             Back To Homepage
         </Link>

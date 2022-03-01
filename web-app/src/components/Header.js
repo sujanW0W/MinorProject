@@ -1,10 +1,12 @@
 import React from 'react'
 import './Header.css'
-import {IconButton} from '@mui/material'
+import {IconButton, Button} from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeDecor from '../homedecorLogo.png'
 import UserIconDropMenu from './UserIconDropMenu'
+import { Link,useNavigate } from 'react-router-dom';
+
 
 export default function Header(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -16,27 +18,44 @@ export default function Header(props) {
     setAnchorEl(null);
   };  
 
-
-  const handleLogin = (event) => {
-    props.renderLogin()
-  } 
-
   const handleLogout = (event) => {
     console.log('Logout');
     props.handleLoggedOut();
     handleClose();
   }
 
+  const navigate = useNavigate();
 
+function handleKey(event){
+	if(event.key === 'Enter'){
+		navigate('/search')
+	}
+}
+
+  function handleCart(event){
+    if(props.loggedIn){
+      navigate('/cart')
+    }else{
+      props.cartNotAvailable('event');
+    }
+  }
+
+  const handleAddProduct = (event) => {
+    if(props.loggedIn){
+      navigate('/AddProduct')
+    }else{
+      props.AddProductNotAvailable('event')
+    }
+  }
 
 
   return (
     <div>
       <nav className="navbar">
         <div className="nav">
-          <a href="#" onClick={() => props.handleLogoClick()}>
+          <Link to="/" >
             <img src={HomeDecor} alt='NA' />
-          </a>
+          </Link>
 
           <div className="nav-items">
             <div className="search">
@@ -47,52 +66,56 @@ export default function Header(props) {
                 name = 'searched'
                 value={props.searched}
                 onChange = {props.handleSearch}
-                onKeyDown = {props.handleSearch}
+                onKeyDown = {handleKey}
               />
+			  <Link to="/search">
               <button 
                 className="search-btn"
                 name='searchedButton'
-                onClick={props.handleSearchButton}
               >
                 Search
               </button>
+			  </Link>
             </div>
 
             <div
-				className = 'profile-div'
+			    className = 'profile-div'
               	onClick={handleClick}
             >
-            <IconButton
-              // onClick = {() => props.renderLogin('event')}
-            >
-              <AccountCircleIcon 
-                sx = {{color : '#383838'}}
-                fontSize = 'large'
-              />
-            </IconButton>
-			{props.loggedIn	&&	<p className='profileName' onClick={handleClick}>userName</p>}
+              <IconButton>
+                <AccountCircleIcon 
+                  sx = {{color : '#383838'}}
+                  fontSize = 'large'
+                />
+              </IconButton>
+              {props.loggedIn	&&	<p className='profileName' onClick={handleClick}>username</p>}
             </div>
 
             <UserIconDropMenu 
               handleClose = {handleClose}
               open = {open}
               anchorEl = {anchorEl}
-              handleLogin = {handleLogin}
               loggedIn = {props.loggedIn}
               handleLogout = {handleLogout}
             />
-            
-            
 
             <IconButton
-              onClick = {() => console.log('Working'), () => console.log('hello')}
+              onClick = {handleCart}
             >
               <ShoppingCartIcon 
                 sx = {{color : '#383838'}}
                 fontSize = 'large'
               />
             </IconButton>
-          
+
+              
+              <button
+                className='add-product'
+                onClick = {handleAddProduct}
+              >
+                Add Product
+              </button>
+
           </div>
         </div>
         <ul className="links-container">

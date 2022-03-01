@@ -31,7 +31,7 @@ function LoginRegister(props) {
 
     const handleTabChange = (event, newValue) => {
         setValue(newValue);
-        props.emptyUserNameAndPwd()
+        props.emptyUsernameAndPwd()
     }
 
     const tabStyle = {

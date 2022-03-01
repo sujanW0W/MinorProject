@@ -1,0 +1,18 @@
+.head-cart{
+  margin: 0px 5em;
+}
+
+.head-cart > .heading{
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.heading > h3 {
+  font-size: 1em;
+  margin-bottom: 0px;
+}
+
+.total-items{
+  font-size: 1rem;
+}
+

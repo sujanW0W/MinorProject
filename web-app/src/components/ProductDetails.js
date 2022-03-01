@@ -17,10 +17,10 @@ export default function ProductDetails(props) {
                 <img src={process.env.PUBLIC_URL+props.data[value]} alt="" className='fullImg'/>
                 <div className="product-images" >
                     <img 
-                        src={process.env.PUBLIC_URL+props.data[0]} 
-                        className="active" 
+                        src={process.env.PUBLIC_URL+props.data[0]}  
                         alt="NA" 
                         onClick={() => handleImageClick('event',0)}
+                        
                     /> 
                     <img 
                         src={process.env.PUBLIC_URL+props.data[1]} 

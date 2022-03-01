@@ -5,6 +5,12 @@ import Dashboard from './Dashboard'
 
 import Snackbar from '@mui/material/Snackbar';
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+
 class App extends React.Component {
   
   state = {
@@ -14,14 +20,13 @@ class App extends React.Component {
     dateOfBirth:'',
     phoneNumber:'',
     gender: '',
-    userName: '',
+    username: '',
     password: '',
   //  confirmPassword: '',
     rememberMe: false,
     terms: false,
 
-    loginPage : false,
-    loggedIn : false,
+   loggedIn : false,
 
 	//Snackbar
 	open: false,
@@ -62,10 +67,10 @@ class App extends React.Component {
       )
   }
 
-  emptyUserNameAndPwd = () => {
+  emptyUsernameAndPwd = () => {
     this.setState(
       {
-        userName : '',
+        username : '',
         password : ''
       }
     )
@@ -75,12 +80,12 @@ class App extends React.Component {
 
 	this.handleSnackbar();
 
-	const {userName,password} = this.state;
+	const {username,password} = this.state;
 
-	const newUser ={userName,password}
+	const newUser ={username,password}
 
 	// const setNewUser=(data)=>{
-	// 	newUser.userName = data.userName
+	// 	newUser.username = data.username
 	// 	newUser.password = data.password
 	// }
 
@@ -102,13 +107,13 @@ class App extends React.Component {
         loggedIn : !this.state.loggedIn
       }
     )
-   // console.log(`Username : ${this.state.userName}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
+   console.log(`username : ${this.state.username}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
   }
 
   handleRegister = (event) => {
 //	event.preventDefault();
 
-      const {firstName,lastName,email,dateOfBirth,phoneNumber,gender,userName,password} = this.state;
+      const {firstName,lastName,email,dateOfBirth,phoneNumber,gender,username,password} = this.state;
     // if (this.state.password !== this.state.confirmPassword) {
 
     //   this.setState(
@@ -120,11 +125,11 @@ class App extends React.Component {
     // }
     // else {
   //    this.state.terms &&
-   //     console.log(`Registered\nfirstName:${firstName}\nlastName:${lastName}\nemail:${email}\ndateOfBirth:${dateOfBirth}\nphoneNumber:${phoneNumber}\ngender:${gender}\nuserName:${userName}\npassword:${password}\n`)
-        // }
+   //     console.log(`Registered\nfirstName:${firstName}\nlastName:${lastName}\nemail:${email}\ndateOfBirth:${dateOfBirth}\nphoneNumber:${phoneNumber}\ngender:${gender}\nusername:${username}\npassword:${password}\n`)
+	//	}
 
 
-	const newUser = {firstName,lastName,email,dateOfBirth,phoneNumber,gender,userName,password}
+	const newUser = {firstName,lastName,email,dateOfBirth,phoneNumber,gender,username,password}
 
 	fetch(
 		"http://localhost:8080/api/v1/registration",{
@@ -136,14 +141,6 @@ class App extends React.Component {
 		)
   }
 
-  renderLogin = (event) => { 
-    this.setState(
-      {
-        loginPage : !this.state.loginPage
-      }
-    )
-  }
-    
   handleLoggedOut = (event) => {
 	 this.handleSnackbar()
     this.setState(
@@ -154,26 +151,34 @@ class App extends React.Component {
   }
 
 
-  render() {
+render() {
     return (
-     	 <div>
-			{this.state.loginPage ? 
-			<LoginRegister
-				data={this.state}
-				handleChange={this.handleChange}
-				handleSubmit={this.handleSubmit}
-				handleRegister={this.handleRegister}
-				renderLogin = {this.renderLogin}
-				emptyUserNameAndPwd ={this.emptyUserNameAndPwd}
-			/>
-			:
-			<Dashboard 
-				renderLogin = {this.renderLogin}
-				loggedIn = {this.state.loggedIn}
-				handleLoggedOut={this.handleLoggedOut}
-
-			/>
-			}
+     	<div>
+			<BrowserRouter>
+  				<Routes>
+					<Route 
+						path = '/LoginRegister'
+						element = {
+							<LoginRegister
+								data={this.state}
+								handleChange={this.handleChange}
+								handleSubmit={this.handleSubmit}
+								handleRegister={this.handleRegister}
+								emptyUsernameAndPwd ={this.emptyUsernameAndPwd}
+							/>
+						}
+					/>
+					<Route 
+						path = '/*'
+						element= {
+							<Dashboard 
+								loggedIn = {this.state.loggedIn}
+								handleLoggedOut={this.handleLoggedOut}
+							/>
+						}
+					/>
+  				</Routes>
+			</BrowserRouter>
 
 			{this.state.loggedIn ? 
 			<Snackbar
@@ -190,11 +195,12 @@ class App extends React.Component {
 				onClose={this.handleSnackbarClose}
 				message = "Logout Successful"
 			/>}
+
+
         </div>
       
     );
-  }
-
 }
 
+}
 export default App;

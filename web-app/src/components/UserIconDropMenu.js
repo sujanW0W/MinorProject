@@ -8,6 +8,8 @@ import Settings from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import {Link} from 'react-router-dom'
+
 
 export default function UserIconDropMenu(props){
     return(
@@ -63,20 +65,25 @@ export default function UserIconDropMenu(props){
                             </ListItemIcon>
                             Settings
                         </MenuItem>
+                        <Link to='/' style={{textDecoration : 'none',color:'inherit'}}>
                         <MenuItem  onClick={props.handleLogout}>
                             <ListItemIcon>
                                 <LogoutIcon fontSize="small" />
                             </ListItemIcon>
                             Logout
                         </MenuItem>
+                        </Link>
                     </div>
                 :
+                    <Link to='loginRegister' style={{textDecoration : 'none',color:'inherit'}}> 
                     <MenuItem onClick = {props.handleLogin}>
                         <ListItemIcon >
                             <LoginIcon fontSize="small" />
                         </ListItemIcon>
                         Login
                     </MenuItem>
+                    </Link>
+                   
                 }
             </Menu> 
         </div>

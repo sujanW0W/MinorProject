@@ -50,8 +50,7 @@ export default function SelectedProduct(props) {
 		'images/paintings15.jpeg'
 	]
 
-	let data =[]
-
+	let data =[];
 	if (props.kind === '0'){
 		data = [
 			props.firstImage,
