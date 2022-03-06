@@ -24,6 +24,8 @@ export default function Header(props) {
     handleClose();
   }
 
+  
+
   const navigate = useNavigate();
 
 function handleKey(event){
@@ -31,6 +33,7 @@ function handleKey(event){
 		navigate('/search')
 	}
 }
+
 
   function handleCart(event){
     if(props.loggedIn){
@@ -88,7 +91,7 @@ function handleKey(event){
                   fontSize = 'large'
                 />
               </IconButton>
-              {props.loggedIn	&&	<p className='profileName' onClick={handleClick}>username</p>}
+              {props.loggedIn	&&	<p className='profileName' onClick={handleClick}>{props.responseUsername}</p>}
             </div>
 
             <UserIconDropMenu 
@@ -119,28 +122,60 @@ function handleKey(event){
           </div>
         </div>
         <ul className="links-container">
+          
           <li className="link-item">
-            <a href="#" className="link">Home</a>
-          </li>
-
-          <li className="link-item">
-            <a href="#" className="link">Bathroom</a>
+            <Link 
+              to="/search" 
+              className="link"
+              name = 'Bathroom'
+              onClick={props.handleNavigation}
+            >
+              Bathroom
+            </Link>
           </li>
 
           	<li className="link-item">
-           		<a href="#" className="link">Kitchen</a>
-			</li>
+           		<Link 
+               to="/search"
+               className="link"
+               name = 'Kitchen'
+               onClick={props.handleNavigation}
+              >
+                Kitchen
+                </Link>
+			    </li>
 
           <li className="link-item">
-            <a href="#" className="link">Art</a>
+            <Link 
+              to="/search" 
+              className="link"
+              name = 'Art'
+              onClick={props.handleNavigation}
+            >
+              Art
+            </Link>
           </li>
 
           <li className="link-item">
-            <a href="#" className="link">Furniture</a>
+            <Link 
+              to="/search" 
+              className="link"
+              name = 'Furniture'
+              onClick={props.handleNavigation}
+            >
+              Furniture
+            </Link>
 			</li>
 
           <li className="link-item">
-            <a href="#" className="link">Accessories</a>
+            <Link 
+              to="/search" 
+              className="link"
+              name = 'Accessories'
+              onClick={props.handleNavigation}
+            >
+              Accessories
+            </Link>
           </li>
         </ul>
       </nav>

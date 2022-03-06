@@ -10,6 +10,7 @@ import SelectedProduct from './SelectedProduct'
 import Cart from './Cart'
 import AddProduct from './AddProduct'
 import Snackbar from '@mui/material/Snackbar';
+import axios from 'axios';
 
 
 import {
@@ -23,6 +24,12 @@ class Dashboard extends React.Component {
 	firstImage : '',
 	kind : ''
   }
+
+  credentials = {
+	  userName : ''
+  }
+
+
 
 //   componentDidMount() {
 //     const productContainer =[...document.querySelectorAll('.product-container')];
@@ -49,6 +56,14 @@ class Dashboard extends React.Component {
         searched : event.target.value
       }
     )
+  }
+
+  handleNavigation = (event) => {
+	  this.setState(
+		  {
+			  searched : event.target.name
+		  }
+	  )
   }
 
   handleProductClick = (event,firstImage,kind) => {
@@ -97,6 +112,8 @@ handleSnackbarClose = () => {
 				handleLoggedOut = {this.props.handleLoggedOut}
 				cartNotAvailable = {this.cartNotAvailable}
 				AddProductNotAvailable = {this.AddProductNotAvailable}
+				handleNavigation = {this.handleNavigation}
+				responseUsername = {this.props.responseUsername}
             />
 
             <div>
@@ -119,7 +136,9 @@ handleSnackbarClose = () => {
 					/>
 					<Route 
 						path='/AddProduct'
-						element = {<AddProduct />}
+						element = {<AddProduct 
+										responseUsername = {this.props.responseUsername}
+									/>}
 					/>
 					<Route
 						path='/*'

@@ -1,16 +1,16 @@
 import React from 'react'
 import './AddProduct.css'
-import { TextField } from '@mui/material'
+import { TextField,InputLabel, MenuItem, Select ,FormControl} from '@mui/material'
 
 class AddProduct extends React.Component {
 	state = {
 		productName : '',
 		shortDescription : '',
-		fullDescription : '',
+		category : '',
 		//images : '',
 		actualPrice : '',
-		discountedPrice : '',
-		sellingPrice : ''
+		// discountedPrice : '',
+		// sellingPrice : ''
 	}
 
 	handleChange = (event) => {
@@ -24,7 +24,19 @@ class AddProduct extends React.Component {
 	}
 
 	handleAddButton = (event) => {
-		console.log(`name: ${this.state.productName}\nactual Price : ${this.state.actualPrice}`)
+		const {productName,shortDescription,category,actualPrice} = this.state;
+		const username = this.props.responseUsername
+		const newProduct = [username,productName,shortDescription,category,actualPrice];
+		
+		console.log(newProduct);
+
+		// axios(
+		// 	{
+		// 		method : 'POST',
+		// 		url : 'http://localhost:8080/',
+		// 		data : newProduct
+		// 	}
+		// )
 	}
 
 	render(){
@@ -49,7 +61,7 @@ class AddProduct extends React.Component {
 				margin='normal'
 				className='text-field'
 			/>
-			<TextField 
+			{/* <TextField 
 				name = 'fullDescription'
 				value={this.state.fullDescription}
 				onChange={this.handleChange}
@@ -57,11 +69,14 @@ class AddProduct extends React.Component {
 				label = 'Full Description of Product'
 				margin = 'normal'
 				className = 'full-description'
-			/>
+			/> */}
 
-			<div className='product-info'>
-				<div className="product-image">
+			<div className='productInfo'>
+				<div className='largeImage'>
 					<p className="text">Product image</p>
+					<div className="productImage">
+						<img src="#" alt="NA" />
+					</div>
 				</div>
 				<div className="upload-image-sec">
 					<p className="text">Upload Images</p>
@@ -79,7 +94,27 @@ class AddProduct extends React.Component {
 				</div>
 			</div>
 
+
 			<div className="product-price">
+				<FormControl 
+					sx = {{width : '225px'}}
+					fullWidth
+				>
+					<InputLabel>Category</InputLabel>
+					<Select 
+						name = 'category'
+						value = {this.state.category}
+						label = 'Category'
+						onChange = {this.handleChange}
+					>
+						<MenuItem value={'A'}>A</MenuItem>
+						<MenuItem value={'B'}>B</MenuItem>
+						<MenuItem value={'C'}>C</MenuItem>
+						<MenuItem value={'D'}>D</MenuItem>
+						<MenuItem value={'E'}>E</MenuItem>
+					</Select>
+				</FormControl>
+					
 				<TextField 
 					name = 'actualPrice'
 					value={this.state.actualPrice}
@@ -89,7 +124,7 @@ class AddProduct extends React.Component {
 					type= 'number'
 					placeholder='NRs.'
 				/>
-				<TextField 
+				{/* <TextField 
 					name = 'discountedPrice'
 					value={this.state.discountedPrice}
 					onChange={this.handleChange}
@@ -106,7 +141,7 @@ class AddProduct extends React.Component {
 					label = 'Selling Price'
 					type= 'number'
 					placeholder='NRs.'
-				/>
+				/> */}
 			</div>
 
 			<button

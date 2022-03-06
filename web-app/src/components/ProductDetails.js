@@ -1,4 +1,5 @@
 import React from 'react'
+import CustomerRating from './CustomerRating';
 import './ProductDetails.css'
 
 
@@ -72,6 +73,11 @@ export default function ProductDetails(props) {
                 </div>
                
             </div>
+        </section>
+
+        <section className = 'rating'>
+            <h2 className='ratingHead'>Rating</h2>
+            <CustomerRating />
         </section>
 
         <section className="detail-des">

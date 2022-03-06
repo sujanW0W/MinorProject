@@ -141,3 +141,12 @@
     line-height: 25px;
     text-align: justify;
 }
+
+.rating{
+    margin:0 10vw;
+    
+}
+
+.ratingHead{
+    margin: 0px;
+}

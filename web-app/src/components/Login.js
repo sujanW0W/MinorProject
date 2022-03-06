@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {TextField, Button, Link} from '@mui/material'
 import './Login.css'
 import {Grid, Avatar} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import Snackbar from '@mui/material/Snackbar';
+
 
 import {useNavigate} from 'react-router-dom'
 
 function Login(props) {
+
+    const [open, setOpen] = useState(false);
+    const [vertical,setVertical] = useState('top');
+    const [horizontal,setHorizontal] = useState('top');
+
+    const handleSnackbar = (event) => {
+        setOpen(true)
+    }
+    const handleSnackbarClose = (event) => {
+        setOpen(false)
+    }
 
     const avatarStyle = {
         backgroundColor : "#363636",
@@ -16,13 +29,20 @@ function Login(props) {
     const navigate = useNavigate();
 
     const signInClicked = (event) => {
-        const{username,password} = props.data;
+
+        const{username,password,status} = props.data;
+    
         if(!username || !password) {
             console.log('Field Missing') //Add alert.
         }else{
-            navigate('/')
             props.handleSubmit('event');
-            
+            // console.log(status)
+            if(status === 200){
+                navigate('/')
+            }else{
+                handleSnackbar();
+                console.log('User Not Found.')
+            }            
         }
     }
 
@@ -124,7 +144,13 @@ function Login(props) {
 
         </div>
 
-      
+        <Snackbar
+				anchorOrigin={{vertical:'top',horizontal:'right'}}
+				open={open}
+				onClose={handleSnackbarClose}
+				message = "User Not Found"
+				
+		/>
     </div>
   )
 }
