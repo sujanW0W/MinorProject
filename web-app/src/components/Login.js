@@ -11,8 +11,6 @@ import {useNavigate} from 'react-router-dom'
 function Login(props) {
 
     const [open, setOpen] = useState(false);
-    const [vertical,setVertical] = useState('top');
-    const [horizontal,setHorizontal] = useState('top');
 
     const handleSnackbar = (event) => {
         setOpen(true)
@@ -36,7 +34,7 @@ function Login(props) {
             console.log('Field Missing') //Add alert.
         }else{
             props.handleSubmit('event');
-            // console.log(status)
+
             if(status === 200){
                 navigate('/')
             }else{

@@ -4,30 +4,77 @@ import Items from './Items'
 import {Scrollbars } from 'react-custom-scrollbars-2'
 import { Paper } from '@mui/material'
 
+import {products} from './productItems'
+
 function Cart() {
+
+    const [items,setItems] = React.useState(products);    
+
+    let amount = 0;
+    items.forEach(
+        item => {
+            amount += item.price
+        }
+    )
+
+    const [totalAmount,setAmount] = React.useState(amount)
+    
+    const handleAmountIncrease = (event,id) => {
+        setAmount(totalAmount + items[id].price)
+    }
+
+    const handleAmountDecrease = (event,id) => {
+        setAmount (totalAmount - items[id].price)
+    }
+
+    const handleCheckout = (event) => {
+        console.log('Order placed.')
+    }
+
   return (
     <div className='head-cart'>
         <div className = 'heading'>
             <h3>Shopping Cart</h3>
-            <p className='total-items'>You have * items in cart.</p>
+            <p className='total-items'>You have <strong>{products.length} </strong> items in Cart.</p>
         </div>
 
-        <Paper></Paper>
-        <div className="cart-items">
-            <div className="cart-items-container">
-                <Scrollbars className="cart-items-container">
-                    <Items />
-                </Scrollbars>
+        <Paper elevation={16} className='items-div'>
+            <div className='containing-div'>
+                {
+                    items.map(
+                        (currentItem) => {
+                            return (
+                                <div className = 'item-div' key = {currentItem.id}>
+                                    <Items 
+                                        item = {items[currentItem.id]}
+                                        handleAmountIncrease = {handleAmountIncrease} 
+                                        handleAmountDecrease = {handleAmountDecrease}
+                                    />
+                                </div>
+                            )
+                        }
+                    )
+                }
             </div>
-        </div>
+       
+        
+            <hr />
 
-        <div className="cart-total">
-            <h3>
-                Cart Total: <span>NRs. 5000</span>
-            </h3>
-            <button>CheckOut</button>
-            <button>Clear Cart</button>
-        </div>
+            <div className="cart-total">
+                <h3>
+                    Total: <span>{`NRs.${totalAmount}` }</span>
+                </h3>
+            </div>
+            <div className='checkout'>
+                <button 
+                    className='checkout-button'
+                    onClick = {handleCheckout}
+                >
+                    CheckOut
+                </button>
+                {/* <button>Clear Cart</button> */}
+            </div>
+        </Paper>
     </div>
   )
 }

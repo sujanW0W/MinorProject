@@ -1,14 +1,16 @@
 import React from 'react'
 import './AddProduct.css'
 import { TextField,InputLabel, MenuItem, Select ,FormControl} from '@mui/material'
+import Button from '@mui/material/Button';
+import axios from 'axios'
 
 class AddProduct extends React.Component {
 	state = {
 		productName : '',
-		shortDescription : '',
+		description : '',
 		category : '',
-		//images : '',
-		actualPrice : '',
+		image : '',
+		price : '',
 		// discountedPrice : '',
 		// sellingPrice : ''
 	}
@@ -24,19 +26,45 @@ class AddProduct extends React.Component {
 	}
 
 	handleAddButton = (event) => {
-		const {productName,shortDescription,category,actualPrice} = this.state;
+		const {productName,description,image,category,price} = this.state;
 		const username = this.props.responseUsername
-		const newProduct = [username,productName,shortDescription,category,actualPrice];
+		const newProduct = [username,productName,description,image,category,price];
 		
 		console.log(newProduct);
 
-		// axios(
-		// 	{
-		// 		method : 'POST',
-		// 		url : 'http://localhost:8080/',
-		// 		data : newProduct
-		// 	}
-		// )
+		const formData = new formData();
+
+		formData.append('productName',productName);
+		formData.append('description',description);
+		formData.append('image', image);
+		formData.append('category', category);
+		formData.append('price', price);
+		
+		axios(
+			{
+				method : 'POST',
+				url : 'http://localhost:8080/api/product/add',
+				data : image,
+				headers : {
+					'content-type' : 'multipart/form-data'
+				}
+			}
+		)
+		.then(
+			(response) => response.json()
+		)
+		.then(
+			(data) => console.log(data)
+		)
+	}
+
+	handleImage = (event) => {
+		let img = event.target.files[0];
+		this.setState(
+			{
+				image : URL.createObjectURL(img)
+			}
+		)
 	}
 
 	render(){
@@ -53,11 +81,11 @@ class AddProduct extends React.Component {
 
 			/>
 			<TextField 
-				name = 'shortDescription'
-				value={this.state.shortDescription}
+				name = 'description'
+				value={this.state.description}
 				onChange={this.handleChange}
 				variant='outlined'
-				label = 'Short Description'
+				label = 'Description'
 				margin='normal'
 				className='text-field'
 			/>
@@ -71,7 +99,7 @@ class AddProduct extends React.Component {
 				className = 'full-description'
 			/> */}
 
-			<div className='productInfo'>
+			{/* <div className='productInfo'>
 				<div className='largeImage'>
 					<p className="text">Product image</p>
 					<div className="productImage">
@@ -92,6 +120,15 @@ class AddProduct extends React.Component {
 						<label htmlFor="fourth-file-upload-btn" className="upload-image"></label>
 					</div>
 				</div>
+			</div> */}
+			<div>
+				<label htmlFor="uploadPhoto"></label>
+				<input 
+					type="file" 
+					name = 'image' 
+					id = 'uploadPhoto'
+					onChange={this.handleImage}
+				/>
 			</div>
 
 
@@ -116,11 +153,11 @@ class AddProduct extends React.Component {
 				</FormControl>
 					
 				<TextField 
-					name = 'actualPrice'
-					value={this.state.actualPrice}
+					name = 'price'
+					value={this.state.price}
 					onChange={this.handleChange}
 					variant='outlined'
-					label = 'Actual Price'
+					label = 'Price'
 					type= 'number'
 					placeholder='NRs.'
 				/>

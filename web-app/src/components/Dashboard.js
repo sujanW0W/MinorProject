@@ -81,7 +81,6 @@ class Dashboard extends React.Component {
 			open : true
 		}
 	)
-	setInterval( () => this.handleSnackbarClose(),3000 )
 }
 
 handleSnackbarClose = () => {

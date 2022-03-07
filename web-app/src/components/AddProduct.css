@@ -80,3 +80,13 @@
 .product-price input{
     margin :0;
 }
+
+label{
+    cursor: pointer;
+}
+
+#uploadPhoto{
+    margin: 20px;
+    font-size: 15px;
+    
+}
