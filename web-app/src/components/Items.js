@@ -1,6 +1,7 @@
 import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Items = (props) => {
 
@@ -12,14 +13,16 @@ const Items = (props) => {
     }
 
     const handleMinus = (event) => {
-        props.handleAmountDecrease(event,props.item.id)
-        setNumber(number -1)
+        if(number > 0){
+            props.handleAmountDecrease(event,props.item.id)
+            setNumber(number -1)
+        }
     }
 
     let price = number * props.item.price;
 
   return (
-    <div style={{display : 'flex', flexDirection : 'row', justifyContent: 'space-between'}}>
+    <div className='item-in-cart' style={{display : 'flex', flexDirection : 'row', justifyContent: 'space-between'}}>
         <div className = 'image-desc'>
             <div className='product-img'>
                 <img src= {props.item.image} alt="NA"/>
@@ -53,10 +56,17 @@ const Items = (props) => {
             />
         </div>
 
-        <div className = 'price'>
+        <div className = 'price-cart'>
             <p>
                 NRs. {price}
             </p>
+        </div>
+        <div className = 'delete'>
+            <DeleteIcon 
+                name = 'delete'
+                className = 'deleteIcon'
+                onClick = {() => console.log('delete clicked')}
+            />
         </div>
     </div>
   )

@@ -49,14 +49,14 @@ export default function UserIconDropMenu(props){
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                {props.loggedIn ? 
+                {localStorage.getItem('loggedIn') ? 
                     <div>
-                        <MenuItem  onClick={props.handleClose}>
-                            <Avatar /> Profile
-                        </MenuItem>
-                        <MenuItem  onClick={props.handleClose}>
-                            <Avatar /> My account
-                        </MenuItem>
+                        <Link to='/profile' style={{textDecoration : 'none',color:'inherit'}}>
+                            <MenuItem  onClick={props.handleClose}>
+                                <Avatar /> Profile
+                            </MenuItem>
+                        </Link>
+                    
                         <Divider />
                     
                         <MenuItem  onClick={props.handleClose}>
@@ -89,13 +89,3 @@ export default function UserIconDropMenu(props){
         </div>
     )
 }
-
-// {props.loggedIn ? 
-//     <div>
-//         <MenuItem onClick={props.handleClose}>Profile</MenuItem>
-//         <MenuItem onClick={props.handleClose}>My account</MenuItem>
-//         <MenuItem onClick={props.handleLogout}>Logout</MenuItem>
-//     </div>
-// :
-//     <MenuItem onClick={props.handleLogin}>Log In</MenuItem>
-// }

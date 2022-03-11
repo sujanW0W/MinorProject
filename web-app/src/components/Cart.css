@@ -107,7 +107,7 @@ input:disabled{
   cursor: pointer;
 }
 
-.price{
+.price-cart{
   width: 120px;
   font-size: larger;
   font-weight: bold;
@@ -139,3 +139,20 @@ input:disabled{
   text-transform: capitalize;
   font-size: 15px;
 }
+
+.delete {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.deleteIcon{
+  cursor: pointer;
+  padding: 2px;
+}
+
+/* @media only screen and (max-width : 600px){
+  .item-in-cart{
+    flex-direction: column;
+  }
+} */

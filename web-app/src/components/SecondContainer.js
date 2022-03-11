@@ -1,30 +1,31 @@
 import React from 'react'
 import './SecondContainer.css'
+import {Link} from 'react-router-dom'
 
-export default function SecondContainer() {
+export default function SecondContainer(props) {
   return (
     <section className="collection-container">
-        <a href="#" className="collection">
+        <Link to="./search" name='Furniture' className="collection" onClick={props.handleNavigation}>
           <div>
             <img src={process.env.PUBLIC_URL+'images/furniture.jpg'} alt="" className='collectionImg'/>
             <p className="collection-item">Furniture</p>
           </div>
             
-        </a>
-        <a href="#" className="collection">
+        </Link>
+        <Link to='/search' name = 'Kitchen' className="collection" onClick = {props.handleNavigation}>
           <div>
             <img src={process.env.PUBLIC_URL+'images/kitchen.jpg'} alt="" className='collectionImg'/>
             <p className="collection-item">Kitchen</p>
           </div>
             
-        </a>
-        <a href="#" className="collection">
+        </Link>
+        <Link to='/search' name = 'Bathroom' className="collection" onClick={props.handleNavigation}>
           <div>
             <img src={process.env.PUBLIC_URL+'images/bathroom.jpg'} alt="" className='collectionImg'/>
             <p className="collection-item">Bathroom</p>
           </div>
             
-        </a>
+        </Link>
     </section>
    
   )

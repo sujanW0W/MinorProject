@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 import CustomerRating from './CustomerRating';
 import './ProductDetails.css'
@@ -6,17 +7,32 @@ import './ProductDetails.css'
 export default function ProductDetails(props) {
 
     const [value,setValue] = React.useState(0)
+    const [product,setProduct]=React.useState(null)
 
     const handleImageClick= (event, newValue) => {
         setValue(newValue);
     }
 
+    React.useEffect(
+		() => {
+			window.scrollTo(0,0)
+		}
+	)
+
+    React.useEffect(()=>{
+        console.log('2.',props.id,props.name);
+        axios.get(`http://localhost:8080/api/product/${props.name}`)
+        .then((data)=>{setProduct(data.data)})
+    },[])
+    
+    const imageURL=product && `data:image/png;base64,${product.image}`
   return (
     <div>
         <section className="product-details">
             <div className="image-slider">
-                <img src={process.env.PUBLIC_URL+props.data[value]} alt="" className='fullImg'/>
-                <div className="product-images" >
+                <img src={imageURL} alt="" className='fullImg'/>
+  
+                {/* <div className="product-images" >
                     <img 
                         src={process.env.PUBLIC_URL+props.data[0]}  
                         alt="NA" 
@@ -38,17 +54,17 @@ export default function ProductDetails(props) {
                         alt="NA" 
                         onClick={() => handleImageClick('event',3)}
                     />
-                </div>
+                </div> */}
+
             </div>
             <div className="details">
-                <h2 className="product-brand">Art & Craft</h2>
-                <p className="product-short-des">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos cupiditate
-                    aliquam non, voluptates ratione nostrum, dolorum esse dolores similique necessitatibus odio tenetur eius
-                    reiciendis fugiat quisquam sit, architecto nam expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quod possimus est incidunt velit exercitationem quo modi ea! Dicta dolore eius culpa ratione suscipit incidunt magni distinctio tempore blanditiis eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis odio quae debitis nihil et adipisci, temporibus dolore nobis eligendi, enim o</p>
+                <h2 className="product-brand">{product && product.productName}</h2>
+                <p className="product-short-des">{product && product.productDescription}</p>
+                
+                <div style={{width:'100%',position:'absolute',bottom:'0px'}}>
                 <div>
-                    <span className="product-price">$99</span>
-                    <span className="product-actual-price">$199</span>
-                    <span className="product-discount">( 50% Off)</span> 
+                    <span className="product-price">Rs {product && product.price}</span>
+                   
                 </div>
                
 
@@ -67,11 +83,11 @@ export default function ProductDetails(props) {
                     <label className="size-radio-btn">XL</label>
                 <input type="radio" name="size" value="XXL" hidden id="XXL-size" />
                     <label className="size-radio-btn">XXL</label> */}
-                <div style={{marginTop:'auto'}}>
-                    <button className="btn cart-btn">add to cart</button>
-                    <button className="btn">add to wishlist</button>  
+                <div>
+                    <button className="btn cart-btn" onClick={() => props.handleAddToCart('event',props.id)}>add to cart</button>
+                    {/* <button className="btn">add to wishlist</button>   */}
                 </div>
-               
+               </div>
             </div>
         </section>
 

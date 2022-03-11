@@ -1,7 +1,7 @@
 import React from 'react'
 import './AddProduct.css'
 import { TextField,InputLabel, MenuItem, Select ,FormControl} from '@mui/material'
-import Button from '@mui/material/Button';
+
 import axios from 'axios'
 
 class AddProduct extends React.Component {
@@ -13,6 +13,18 @@ class AddProduct extends React.Component {
 		price : '',
 		// discountedPrice : '',
 		// sellingPrice : ''
+	}
+
+	refreshComp = (event) => {
+		this.setState(
+			{
+				productName : '',
+				description : '',
+				category : '',
+				image : '',
+				price : ''
+			}
+		)
 	}
 
 	handleChange = (event) => {
@@ -27,43 +39,51 @@ class AddProduct extends React.Component {
 
 	handleAddButton = (event) => {
 		const {productName,description,image,category,price} = this.state;
-		const username = this.props.responseUsername
+		const username = localStorage.getItem('username')
 		const newProduct = [username,productName,description,image,category,price];
 		
 		console.log(newProduct);
 
-		const formData = new formData();
+		let formData = new FormData();
 
+		
+		formData.append('username',username);
 		formData.append('productName',productName);
-		formData.append('description',description);
-		formData.append('image', image);
-		formData.append('category', category);
-		formData.append('price', price);
+		formData.append('productDescription',description);
+		formData.append('file', image);
+		formData.append('productCategory', category);
+		formData.append('productPrice', price);
 		
 		axios(
 			{
 				method : 'POST',
 				url : 'http://localhost:8080/api/product/add',
-				data : image,
+				data : formData,
 				headers : {
 					'content-type' : 'multipart/form-data'
 				}
 			}
 		)
 		.then(
-			(response) => response.json()
+			(response) => console.log(response)
 		)
-		.then(
-			(data) => console.log(data)
+		.catch(
+			(err) => console.log(err)
 		)
+		
+	//	window.location.reload(true)  Yesle page completely reload garyo. Issue k bhayo bhanda jun responses and console message aako hunchan. sabai delete bhayo. SO better to re-render the component by changing state.
+			console.log(this.state)
+		this.refreshComp()
 	}
 
 	handleImage = (event) => {
 		let img = event.target.files[0];
 		this.setState(
 			{
-				image : URL.createObjectURL(img)
+				//image : URL.createObjectURL(img)
+				image : img
 			}
+			
 		)
 	}
 
@@ -144,11 +164,11 @@ class AddProduct extends React.Component {
 						label = 'Category'
 						onChange = {this.handleChange}
 					>
-						<MenuItem value={'A'}>A</MenuItem>
-						<MenuItem value={'B'}>B</MenuItem>
-						<MenuItem value={'C'}>C</MenuItem>
-						<MenuItem value={'D'}>D</MenuItem>
-						<MenuItem value={'E'}>E</MenuItem>
+						<MenuItem value={'A'}>Bathroom</MenuItem>
+						<MenuItem value={'B'}>Kitchen</MenuItem>
+						<MenuItem value={'C'}>Art</MenuItem>
+						<MenuItem value={'D'}>Furniture</MenuItem>
+						<MenuItem value={'E'}>Accessories</MenuItem>
 					</Select>
 				</FormControl>
 					

@@ -19,7 +19,6 @@ export default function Header(props) {
   };  
 
   const handleLogout = (event) => {
-    console.log('Logout');
     props.handleLoggedOut();
     handleClose();
   }
@@ -36,7 +35,7 @@ function handleKey(event){
 
 
   function handleCart(event){
-    if(props.loggedIn){
+    if(localStorage.getItem('loggedIn')){
       navigate('/cart')
     }else{
       props.cartNotAvailable('event');
@@ -44,7 +43,7 @@ function handleKey(event){
   }
 
   const handleAddProduct = (event) => {
-    if(props.loggedIn){
+    if(localStorage.getItem('loggedIn')){
       navigate('/AddProduct')
     }else{
       props.AddProductNotAvailable('event')
@@ -91,14 +90,14 @@ function handleKey(event){
                   fontSize = 'large'
                 />
               </IconButton>
-              {props.loggedIn	&&	<p className='profileName' onClick={handleClick}>{props.responseUsername}</p>}
+              {localStorage.getItem('loggedIn')	&&	<p className='profileName' onClick={handleClick}>{localStorage.getItem('username')}</p>}
             </div>
 
             <UserIconDropMenu 
               handleClose = {handleClose}
               open = {open}
               anchorEl = {anchorEl}
-              loggedIn = {props.loggedIn}
+              loggedIn = {localStorage.getItem('loggedIn')}
               handleLogout = {handleLogout}
             />
 

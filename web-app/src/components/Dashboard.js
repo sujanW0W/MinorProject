@@ -10,25 +10,24 @@ import SelectedProduct from './SelectedProduct'
 import Cart from './Cart'
 import AddProduct from './AddProduct'
 import Snackbar from '@mui/material/Snackbar';
-import axios from 'axios';
+import Profile from './Profile'
 
 
 import {
 	Routes,
 	Route,
 } from 'react-router-dom'
+import axios from 'axios'
+import { products } from './productItems'
 
 class Dashboard extends React.Component {
   state = {
     searched : '',
-	firstImage : '',
-	kind : ''
+	products : null,
+	id:'',
+	name:'',
+	cartItems:[]
   }
-
-  credentials = {
-	  userName : ''
-  }
-
 
 
 //   componentDidMount() {
@@ -50,6 +49,20 @@ class Dashboard extends React.Component {
 //     })
 // }
 
+componentDidMount(){
+		this.getProduct()
+		
+  }
+   getProduct=()=>{
+	const url = 'http://localhost:8080/api/product/getProduct'
+	axios.get(url)
+	.then(
+		(response) => {
+			this.setState({products:response.data})
+		}
+	)
+}
+
   handleSearch = (event) => {
     this.setState(
       {
@@ -59,6 +72,7 @@ class Dashboard extends React.Component {
   }
 
   handleNavigation = (event) => {
+
 	  this.setState(
 		  {
 			  searched : event.target.name
@@ -66,11 +80,12 @@ class Dashboard extends React.Component {
 	  )
   }
 
-  handleProductClick = (event,firstImage,kind) => {
+  handleProductClick = (event,productID,productName) => {
+	  console.log('1.',productID,productName)
 	  this.setState(
 		{
-		  firstImage :firstImage,
-		  kind : kind
+		  id:productID,	
+		  name:productName
 	  	}
 	  )
   }
@@ -91,6 +106,12 @@ handleSnackbarClose = () => {
 	)
 }
 
+	handleAddToCart = (event,id) => {
+		this.setState(
+			{cartItems : [...this.state.cartItems,id]}
+		)
+	}
+
   cartNotAvailable = (event) => {
 	  this.handleSnackbar();
   }
@@ -98,6 +119,8 @@ handleSnackbarClose = () => {
   AddProductNotAvailable = (event) => {
 	  this.handleSnackbar();
   }
+
+  
 
   render(){
     return(
@@ -107,37 +130,46 @@ handleSnackbarClose = () => {
 				handleSearch = {this.handleSearch}
 				handleSearchButton = {this.handleSearchButton}
 				handleLogoClick = {this.handleLogoClick}
-				loggedIn = {this.props.loggedIn}
+				
 				handleLoggedOut = {this.props.handleLoggedOut}
 				cartNotAvailable = {this.cartNotAvailable}
 				AddProductNotAvailable = {this.AddProductNotAvailable}
 				handleNavigation = {this.handleNavigation}
-				responseUsername = {this.props.responseUsername}
             />
 
             <div>
 				<Routes>
+					<Route 
+						path='/profile'
+						element = {<Profile />}
+					/>
 					<Route
 						path = '/search'
-						element = {<SearchPage searched = {this.state.searched}/>}
+						element = {<SearchPage 
+							searched = {this.state.searched} 
+							handleAddToCart={this.handleAddToCart} 
+							handleProductClick={this.handleProductClick}
+						/>}
 					/>
 					<Route 
-						path = '/product='
+						path = '/product=id'
 						element = {<SelectedProduct 
-										firstImage = {this.state.firstImage}
-										kind = {this.state.kind}
+										productsList = {this.state.products}
 										handleProductClick = {this.handleProductClick}
+										id={this.state.id}
+										name={this.state.name}
+										handleAddToCart = {this.handleAddToCart}
 									/>}
 					/>
 					<Route
 						path = '/cart'
-						element = {<Cart />}
+						element = {<Cart 
+										cartItems = {this.state.cartItems}
+									/>}
 					/>
 					<Route 
 						path='/AddProduct'
-						element = {<AddProduct 
-										responseUsername = {this.props.responseUsername}
-									/>}
+						element = {<AddProduct />}
 					/>
 					<Route
 						path='/*'
@@ -146,13 +178,17 @@ handleSnackbarClose = () => {
 						<div>
 							<Banner />
 							<ScrollingProducts
+								productsList = {this.state.products}
 								handleProductClick = {this.handleProductClick}
+								handleAddToCart = {this.handleAddToCart}
 							/>
 							<SecondContainer
-								handleProductClick = {this.handleProductClick}
+								handleNavigation = {this.handleNavigation}
 							/>
 							<SecondScrollingProducts
+								productsList = {this.state.products}
 								handleProductClick = {this.handleProductClick}
+								handleAddToCart = {this.handleAddToCart}
 							/>
 						</div>}
 					/>

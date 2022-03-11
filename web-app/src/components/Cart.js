@@ -3,11 +3,28 @@ import './Cart.css'
 import Items from './Items'
 import {Scrollbars } from 'react-custom-scrollbars-2'
 import { Paper } from '@mui/material'
+import axios from 'axios'
 
 import {products} from './productItems'
 
-function Cart() {
+function Cart({cartItems}) {
 
+    // const [products,setProducts] = React.useState(null)
+    // React.useEffect(
+    //     ()=>{
+    //         const gotProducts = cartItems.map(
+    //             (id) => {
+    //                 axios.post(`http://localhost:8080/api/product/productById/${id}`)
+    //                 .then(
+    //                     (response) => {return response.data}
+    //                 )
+    //             }
+    //         )
+    //         setProducts(gotProducts)
+    //     },[]
+    // )
+    
+    console.log(cartItems)
     const [items,setItems] = React.useState(products);    
 
     let amount = 0;

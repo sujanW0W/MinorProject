@@ -1,0 +1,23 @@
+.outermost{
+    width: 30%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.nameField{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.name{
+    font-size: large;
+    height: 30px;
+}
+
+.labelName{
+    font-size: large;
+    font-weight: bold;
+    margin-right: 5px;
+    width: 150px;
+}

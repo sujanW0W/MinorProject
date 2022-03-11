@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css';
 import LoginRegister from './LoginRegister'
 import Dashboard from './Dashboard'
+import jwt_decode from 'jwt-decode'
 
 import Snackbar from '@mui/material/Snackbar';
 
@@ -11,6 +12,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from 'react-router-dom';
 
 class App extends React.Component {
@@ -27,11 +29,8 @@ class App extends React.Component {
   //  confirmPassword: '',
     rememberMe: false,
     terms: false,
-
-   loggedIn : false,
-   status : '',
-   responseUsername : '',
-
+	token :null,
+   	status : '',
 	//Snackbar
 	open: false,
     vertical: 'top',
@@ -112,13 +111,20 @@ class App extends React.Component {
 		)
 		.then(
 			(response) => {
-				console.log(response)
 				this.setState(
 					{
 						status : response.status,
-						responseUsername : response.data.username
+						token : response.data.token
 					}
 				)
+				const decoded = jwt_decode(this.state.token)
+				// this.setState(
+				// 	{
+				// 		responseUsername : decoded.sub
+				// 	}
+				// )
+				localStorage.setItem('username',decoded.sub)
+				console.log(localStorage.getItem('username'))
 			}
 		)
 
@@ -141,14 +147,12 @@ class App extends React.Component {
 	  
 	if(this.state.status === 200){
 		this.handleSnackbar();
-		this.setState(
-			{
-				loggedIn : !this.state.loggedIn
-			}
-		)
+		
+		localStorage.setItem('token',this.state.token);
+		localStorage.setItem('loggedIn',true)
 	}
     
-   console.log(`username : ${this.state.username}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
+ //  console.log(`username : ${this.state.username}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
   }
 
   handleRegister = (event) => {
@@ -169,8 +173,7 @@ class App extends React.Component {
    //     console.log(`Registered\nfirstName:${firstName}\nlastName:${lastName}\nemail:${email}\ndateOfBirth:${dateOfBirth}\nphoneNumber:${phoneNumber}\ngender:${gender}\nusername:${username}\npassword:${password}\n`)
 	//	}
 
-	const userName = username;
-	const newUser = {firstName,lastName,email,dateOfBirth,phoneNumber,gender,userName,password}
+	const newUser = {firstName,lastName,email,dateOfBirth,phoneNumber,gender,username,password}
 
 	// fetch(
 	// 	"http://localhost:8080/api/v1/registration",{
@@ -193,13 +196,18 @@ class App extends React.Component {
 
   handleLoggedOut = (event) => {
 	this.handleSnackbar()
-    this.setState(
-      {
-        loggedIn : !this.state.loggedIn
-      }
-    )
+  
+	localStorage.removeItem('token')
+	localStorage.removeItem('loggedIn')
+	localStorage.removeItem('username')
   }
 
+ 	isAuth = () => {
+		if(localStorage.getItem("token"))
+			return true
+		else
+			return false
+	}
 
 render() {
     return (
@@ -221,21 +229,23 @@ render() {
 					<Route 
 						path = '/*'
 						element= {
-							<Dashboard 
-								loggedIn = {this.state.loggedIn}
-								handleLoggedOut={this.handleLoggedOut}
-								responseUsername={this.state.responseUsername}
-							/>
+							this.isAuth() ?
+								<Dashboard 
+									handleLoggedOut={this.handleLoggedOut}
+									handleAddToCart = {this.handleAddToCart}
+								/>
+							:
+								<Navigate to='/LoginRegister'/>
 						}
 					/>
   				</Routes>
 			</BrowserRouter>
 
-			{this.state.loggedIn ? 
+			{localStorage.getItem('loggedIn') ? 
 			<Snackbar
 				anchorOrigin={{vertical:'top',horizontal:'right'}}
 				open={this.state.open}
-				onClose={this.handleSnackbarClose}
+				onClose={this.handleSnackbarClose}		
 				message = "Login Successful"
 				
 			/>
