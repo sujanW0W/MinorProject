@@ -1,27 +1,27 @@
 import React from 'react'
 import './ScrollingProducts.css'
-import {IconButton} from '@mui/material'
+import { IconButton } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ProductCard from './ProductCard'
 
 
-export default function SecondScrollingProducts(props){
+export default function SecondScrollingProducts(props) {
 
     React.useEffect(
         () => {
-            const productContainer =[...document.querySelectorAll('.product-container')];
+            const productContainer = [...document.querySelectorAll('.product-container')];
             const nxtBtn = [...document.querySelectorAll('#nxt-btn')];
             const preBtn = [...document.querySelectorAll('#pre-btn')];
 
             productContainer.forEach((item, i) => {
-                let containerDimesions=item.getBoundingClientRect();
-                let containerWidth= containerDimesions.width;
+                let containerDimesions = item.getBoundingClientRect();
+                let containerWidth = containerDimesions.width;
 
-                nxtBtn[i].addEventListener('click',()=>{
+                nxtBtn[i].addEventListener('click', () => {
                     item.scrollLeft += containerWidth;
                 })
 
-                preBtn[i].addEventListener('click',()=>{
+                preBtn[i].addEventListener('click', () => {
                     item.scrollLeft -= containerWidth;
                 })
             })
@@ -31,12 +31,12 @@ export default function SecondScrollingProducts(props){
     return (
         <section className="product">
             <h2 className="product-category">Best Selling Paintings</h2>
-            <IconButton 
-                id="pre-btn" 
+            <IconButton
+                id="pre-btn"
             >
                 <ArrowForwardIosIcon />
             </IconButton>
-            <IconButton 
+            <IconButton
                 id="nxt-btn"
             >
                 <ArrowForwardIosIcon />
@@ -46,21 +46,21 @@ export default function SecondScrollingProducts(props){
                 {
                     props.productsList && props.productsList.map(
                         (product) => {
-                            return <ProductCard 
-                                        id = {product.productID}
-                                        name = {product.productName}
-                                        description = {product.productDescription}
-                                        category = {product.productCategory}
-                                        price = {product.price}
-                                        img = {product.image}
-                                        handleProductClick = {props.handleProductClick}
-                                        key = {product.productID}
-                                        handleAddToCart = {props.handleAddToCart}
-                                    />
+                            return <ProductCard
+                                id={product.id}
+                                name={product.productName}
+                                description={product.productDescription}
+                                category={product.productCategory}
+                                price={product.price}
+                                img={product.image}
+                                handleProductClick={props.handleProductClick}
+                                key={product.id}
+                                handleAddToCart={props.handleAddToCart}
+                            />
                         }
                     )
                 }
-            </div> 
-        </section>  
+            </div>
+        </section>
     )
 }

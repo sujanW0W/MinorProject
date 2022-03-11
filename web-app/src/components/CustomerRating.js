@@ -1,9 +1,32 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import axios from 'axios';
 
-export default function CustomerRating() {
-  const [value, setValue] = React.useState(2);
+export default function CustomerRating(props) {
+
+
+  const handleRating = (event) => {
+    postRating(event.target.value);
+  }
+
+
+
+  const postRating = (value) => {
+    const url = 'http://localhost:8080/api/product/rateproduct'
+    const ratingData = {
+      productID: props.id,
+      userID: parseInt(localStorage.getItem('userID')),
+      rateProduct: value
+    }
+    console.log(ratingData);
+    axios.post(url, ratingData)
+      .then(
+        (response) => {
+          console.log(response)
+        }
+      )
+  }
 
   return (
     <Box
@@ -13,10 +36,7 @@ export default function CustomerRating() {
     >
       <Rating
         name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
+        onChange={handleRating}
       />
     </Box>
   );
