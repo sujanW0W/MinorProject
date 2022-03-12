@@ -1,11 +1,11 @@
 import React from 'react'
 import './Header.css'
-import {IconButton, Button} from '@mui/material'
+import { IconButton, Button } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeDecor from '../homedecorLogo.png'
 import UserIconDropMenu from './UserIconDropMenu'
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function Header(props) {
@@ -16,36 +16,36 @@ export default function Header(props) {
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };  
+  };
 
   const handleLogout = (event) => {
     props.handleLoggedOut();
     handleClose();
   }
 
-  
+
 
   const navigate = useNavigate();
 
-function handleKey(event){
-	if(event.key === 'Enter'){
-		navigate('/search')
-	}
-}
+  function handleKey(event) {
+    if (event.key === 'Enter') {
+      navigate('/search')
+    }
+  }
 
 
-  function handleCart(event){
-    if(localStorage.getItem('loggedIn')){
+  function handleCart(event) {
+    if (localStorage.getItem('loggedIn')) {
       navigate('/cart')
-    }else{
+    } else {
       props.cartNotAvailable('event');
     }
   }
 
   const handleAddProduct = (event) => {
-    if(localStorage.getItem('loggedIn')){
+    if (localStorage.getItem('loggedIn')) {
       navigate('/AddProduct')
-    }else{
+    } else {
       props.AddProductNotAvailable('event')
     }
   }
@@ -61,117 +61,117 @@ function handleKey(event){
 
           <div className="nav-items">
             <div className="search">
-              <input 
-                type="text" 
-                className="search-box" 
-                placeholder="Search brand, product" 
-                name = 'searched'
+              <input
+                type="text"
+                className="search-box"
+                placeholder="Search brand, product"
+                name='searched'
                 value={props.searched}
-                onChange = {props.handleSearch}
-                onKeyDown = {handleKey}
+                onChange={props.handleSearch}
+                onKeyDown={handleKey}
               />
-			  <Link to="/search">
-              <button 
-                className="search-btn"
-                name='searchedButton'
-              >
-                Search
-              </button>
-			  </Link>
+              <Link to="/search">
+                <button
+                  className="search-btn"
+                  name='searchedButton'
+                >
+                  Search
+                </button>
+              </Link>
             </div>
 
             <div
-			    className = 'profile-div'
-              	onClick={handleClick}
+              className='profile-div'
+              onClick={handleClick}
             >
               <IconButton>
-                <AccountCircleIcon 
-                  sx = {{color : '#383838'}}
-                  fontSize = 'large'
+                <AccountCircleIcon
+                  sx={{ color: '#383838' }}
+                  fontSize='large'
                 />
               </IconButton>
-              {localStorage.getItem('loggedIn')	&&	<p className='profileName' onClick={handleClick}>{localStorage.getItem('username')}</p>}
+              {localStorage.getItem('loggedIn') && <p className='profileName' onClick={handleClick}>{localStorage.getItem('username')}</p>}
             </div>
 
-            <UserIconDropMenu 
-              handleClose = {handleClose}
-              open = {open}
-              anchorEl = {anchorEl}
-              loggedIn = {localStorage.getItem('loggedIn')}
-              handleLogout = {handleLogout}
+            <UserIconDropMenu
+              handleClose={handleClose}
+              open={open}
+              anchorEl={anchorEl}
+              loggedIn={localStorage.getItem('loggedIn')}
+              handleLogout={handleLogout}
             />
 
             <IconButton
-              onClick = {handleCart}
+              onClick={handleCart}
             >
-              <ShoppingCartIcon 
-                sx = {{color : '#383838'}}
-                fontSize = 'large'
+              <ShoppingCartIcon
+                sx={{ color: '#383838' }}
+                fontSize='large'
               />
             </IconButton>
 
-              
-              <button
-                className='add-product'
-                onClick = {handleAddProduct}
-              >
-                Add Product
-              </button>
+
+            <button
+              className='add-product'
+              onClick={handleAddProduct}
+            >
+              Add Product
+            </button>
 
           </div>
         </div>
         <ul className="links-container">
-          
+
           <li className="link-item">
-            <Link 
-              to="/search" 
+            <Link
+              to="/category"
               className="link"
-              name = 'Bathroom'
-              onClick={props.handleNavigation}
+              name='Bathroom'
+              onClick={() => props.handleNavigation('event', 'A')}
             >
               Bathroom
             </Link>
           </li>
 
-          	<li className="link-item">
-           		<Link 
-               to="/search"
-               className="link"
-               name = 'Kitchen'
-               onClick={props.handleNavigation}
-              >
-                Kitchen
-                </Link>
-			    </li>
+          <li className="link-item">
+            <Link
+              to="/category"
+              className="link"
+              name='Kitchen'
+              onClick={() => props.handleNavigation('event', 'B')}
+            >
+              Kitchen
+            </Link>
+          </li>
 
           <li className="link-item">
-            <Link 
-              to="/search" 
+            <Link
+              to="/category"
               className="link"
-              name = 'Art'
-              onClick={props.handleNavigation}
+              name='Art'
+              onClick={() => props.handleNavigation('event', 'C')}
             >
               Art
             </Link>
           </li>
 
           <li className="link-item">
-            <Link 
-              to="/search" 
+            <Link
+              to="/category"
               className="link"
-              name = 'Furniture'
-              onClick={props.handleNavigation}
+              name='Furniture'
+              onClick={() => props.handleNavigation('event', 'D')}
             >
               Furniture
             </Link>
-			</li>
+          </li>
 
           <li className="link-item">
-            <Link 
-              to="/search" 
+            <Link
+              to="/category"
               className="link"
-              name = 'Accessories'
-              onClick={props.handleNavigation}
+              name='Accessories'
+              onClick={() => props.handleNavigation('event', 'E')}
             >
               Accessories
             </Link>

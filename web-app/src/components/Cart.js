@@ -7,13 +7,13 @@ import axios from 'axios'
 
 // import {products} from './productItems'
 
-function Cart({cartItems,handleRemoveFromCart}) {
+function Cart({ cartItems, handleRemoveFromCart }) {
     const [products, setProducts] = React.useState([])
-    
+
     React.useEffect(
         () => {
             cartItems.forEach(
-                (id) => 
+                (id) =>
                     axios.get(`http://localhost:8080/api/product/productById/${id}`)
                         .then(
                             (response) => {
@@ -28,7 +28,7 @@ function Cart({cartItems,handleRemoveFromCart}) {
             )
         }, []
     )
-    
+
     const [totalAmount, setAmount] = React.useState(0)
 
     const handleAmountIncrease = (event, price) => {
@@ -44,14 +44,14 @@ function Cart({cartItems,handleRemoveFromCart}) {
         localStorage.removeItem('cartItems')
     }
 
-    const deleteProduct = (event,id,price) => {
+    const deleteProduct = (event, id, price) => {
         setProducts(
             products.filter(
                 (item) => id !== item.id
             )
         )
-        handleAmountDecrease(event,price)
-        handleRemoveFromCart(event,id)
+        handleAmountDecrease(event, price)
+        handleRemoveFromCart(event, id)
     }
 
     return (
@@ -72,7 +72,7 @@ function Cart({cartItems,handleRemoveFromCart}) {
                                             item={currentItem}
                                             handleAmountIncrease={handleAmountIncrease}
                                             handleAmountDecrease={handleAmountDecrease}
-                                            deleteProduct = {deleteProduct}
+                                            deleteProduct={deleteProduct}
                                         />
                                     </div>
                                 )

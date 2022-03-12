@@ -13,6 +13,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Profile from './Profile'
 import NoPage from './NoPage'
 import Recommendations from './Recommendations'
+import CategoryPage from './CategoryPage'
 
 import {
 	Routes,
@@ -25,6 +26,7 @@ import { products } from './productItems'
 class Dashboard extends React.Component {
 	state = {
 		searched: '',
+		category: '',
 		products: null,
 		id: '',
 		cartItems: []
@@ -72,11 +74,11 @@ class Dashboard extends React.Component {
 		)
 	}
 
-	handleNavigation = (event) => {
+	handleNavigation = (event, category) => {
 
 		this.setState(
 			{
-				searched: event.target.name
+				category: category
 			}
 		)
 	}
@@ -114,14 +116,14 @@ class Dashboard extends React.Component {
 		)
 	}
 
-	handleRemoveFromCart = (event,id) => {
+	handleRemoveFromCart = (event, id) => {
 		const items = this.state.cartItems.filter(
 			(item) => id !== item
 		)
 
 		this.setState(
 			{
-				cartItems : items
+				cartItems: items
 			}
 		)
 	}
@@ -134,7 +136,7 @@ class Dashboard extends React.Component {
 		this.handleSnackbar();
 	}
 
-isAuth = () => {
+	isAuth = () => {
 		if (localStorage.getItem("token"))
 			return true
 		else
@@ -159,46 +161,56 @@ isAuth = () => {
 
 				<div>
 					<Routes>
-						
+
 						<Route
 							path='/profile'
 							element={
 								this.isAuth() ?
 									<Profile />
-								:
+									:
 									<Navigate to='/LoginRegister' />}
-							
+
 						/>
 						<Route
 							path='/search'
 							element={
-									<SearchPage
-										searched={this.state.searched}
-										handleAddToCart={this.handleAddToCart}
-										handleProductClick={this.handleProductClick}
+								<SearchPage
+									searched={this.state.searched}
+									handleAddToCart={this.handleAddToCart}
+									handleProductClick={this.handleProductClick}
+								/>
+							}
+						/>
+						<Route
+							path='/category'
+							element={
+								<CategoryPage
+									category={this.state.category}
+									handleAddToCart={this.handleAddToCart}
+									handleProductClick={this.handleProductClick}
 								/>
 							}
 						/>
 						<Route
 							path='/product=id'
 							element={
-									<SelectedProduct
-										productsList={this.state.products}
-										handleProductClick={this.handleProductClick}
-										id={this.state.id}
-										handleAddToCart={this.handleAddToCart}
-									/>
+								<SelectedProduct
+									productsList={this.state.products}
+									handleProductClick={this.handleProductClick}
+									id={this.state.id}
+									handleAddToCart={this.handleAddToCart}
+								/>
 							}
 						/>
 						<Route
 							path='/cart'
 							element={
 								this.isAuth() ?
-									<Cart 
+									<Cart
 										cartItems={this.state.cartItems}
 										handleRemoveFromCart={this.handleRemoveFromCart}
 									/>
-								:
+									:
 									<Navigate to='/LoginRegister' />
 							}
 						/>
@@ -207,15 +219,15 @@ isAuth = () => {
 							element={
 								this.isAuth() ?
 									<AddProduct />
-								:
-								<Navigate to='/LoginRegister' />
+									:
+									<Navigate to='/LoginRegister' />
 							}
 						/>
 
-						<Route 
-							path = '/recommendations'
-							element = {
-								<Recommendations 
+						<Route
+							path='/recommendations'
+							element={
+								<Recommendations
 									handleProductClick={this.handleProductClick}
 									handleAddToCart={this.handleAddToCart}
 								/>
@@ -243,9 +255,9 @@ isAuth = () => {
 								</div>}
 						/>
 
-						<Route 
-							path = '/*'
-							element = {<NoPage />}
+						<Route
+							path='/*'
+							element={<NoPage />}
 						/>
 					</Routes>
 

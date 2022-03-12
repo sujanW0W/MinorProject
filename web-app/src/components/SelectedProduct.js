@@ -1,6 +1,7 @@
 import React from 'react'
 import ScrollingProducts from './ScrollingProducts'
 import ProductDetails from './ProductDetails'
+import ItemBased from './ItemBased'
 
 
 
@@ -12,7 +13,7 @@ export default function SelectedProduct(props) {
 	// 	}
 	// )
 
-    // const art = [ //Fetch the images from DB.
+	// const art = [ //Fetch the images from DB.
 	// 	'images/art0.jpg',
 	// 	'images/art1.jpg',
 	// 	'images/art2.jpg',
@@ -67,20 +68,23 @@ export default function SelectedProduct(props) {
 	// 	]
 	// }
 
-  return (
-      <div>
-        <ProductDetails 
-            // data={data} 
-			id={props.id}
-			handleAddToCart = {props.handleAddToCart}
-        />
-        <ScrollingProducts 
-			productsList = {props.productsList}
-			handleProductClick = {props.handleProductClick}			
-			handleAddToCart = {props.handleAddToCart}
+	return (
+		<div>
+			<ProductDetails
+				// data={data} 
+				id={props.id}
+				handleAddToCart={props.handleAddToCart}
+			/>
+			<ItemBased
+				handleProductClick={props.handleProductClick}
+				handleAddToCart={props.handleAddToCart}
+			/>
+			<ScrollingProducts
+				productsList={props.productsList}
+				handleProductClick={props.handleProductClick}
+				handleAddToCart={props.handleAddToCart}
+			/>
+		</div>
 
-		/>
-      </div>
-   
-  )
+	)
 }

@@ -1,4 +1,5 @@
 .recommend-outerdiv{
     margin: 30px;
-    
+    display: flex;   
+    flex-direction: row;
 }
