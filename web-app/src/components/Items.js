@@ -7,25 +7,32 @@ const Items = (props) => {
 
     const [number,setNumber] = React.useState(1);
 
+    React.useEffect(
+       ()=> props.handleAmountIncrease('event',props.item.price),[]
+    )
+
     const handlePlus = (event) => {
-        props.handleAmountIncrease(event,props.item.id)
+        props.handleAmountIncrease(event,props.item.price)
         setNumber(number +1)
     }
 
     const handleMinus = (event) => {
         if(number > 0){
-            props.handleAmountDecrease(event,props.item.id)
+            props.handleAmountDecrease(event,props.item.price)
             setNumber(number -1)
         }
     }
 
     let price = number * props.item.price;
 
+    const imageURL = props.item && `data:image/png;base64,${props.item.image}`;
+
   return (
+      
     <div className='item-in-cart' style={{display : 'flex', flexDirection : 'row', justifyContent: 'space-between'}}>
         <div className = 'image-desc'>
             <div className='product-img'>
-                <img src= {props.item.image} alt="NA"/>
+                <img src= {imageURL} alt="NA"/>
             </div>
 
             <div className='description'>
@@ -65,7 +72,7 @@ const Items = (props) => {
             <DeleteIcon 
                 name = 'delete'
                 className = 'deleteIcon'
-                onClick = {() => console.log('delete clicked')}
+                onClick = {() => props.deleteProduct('event',props.item.id,props.item.price)}
             />
         </div>
     </div>

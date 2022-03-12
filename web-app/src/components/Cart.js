@@ -7,45 +7,51 @@ import axios from 'axios'
 
 // import {products} from './productItems'
 
-function Cart({ cartItems }) {
-
-    const [products, setProducts] = React.useState(null)
+function Cart({cartItems,handleRemoveFromCart}) {
+    const [products, setProducts] = React.useState([])
+    
     React.useEffect(
         () => {
-            const gotProducts = cartItems.map(
-                (id) => {
-                    axios.post(`http://localhost:8080/api/product/productById/${id}`)
+            cartItems.forEach(
+                (id) => 
+                    axios.get(`http://localhost:8080/api/product/productById/${id}`)
                         .then(
-                            (response) => { return response.data }
+                            (response) => {
+                                setProducts(
+                                    prevState => [...prevState, response.data]
+                                )
+                            }
                         )
-                }
+                        .catch(
+                            (err) => console.log(err)
+                        )
             )
-            setProducts(gotProducts)
         }, []
     )
+    
+    const [totalAmount, setAmount] = React.useState(0)
 
-    console.log(cartItems)
-    const [items, setItems] = React.useState(products);
-
-    let amount = 0;
-    items.forEach(
-        item => {
-            amount += item.price
-        }
-    )
-
-    const [totalAmount, setAmount] = React.useState(amount)
-
-    const handleAmountIncrease = (event, id) => {
-        setAmount(totalAmount + items[id].price)
+    const handleAmountIncrease = (event, price) => {
+        setAmount(totalAmount + price)
     }
 
-    const handleAmountDecrease = (event, id) => {
-        setAmount(totalAmount - items[id].price)
+    const handleAmountDecrease = (event, price) => {
+        setAmount(totalAmount - price)
     }
 
     const handleCheckout = (event) => {
         console.log('Order placed.')
+        localStorage.removeItem('cartItems')
+    }
+
+    const deleteProduct = (event,id,price) => {
+        setProducts(
+            products.filter(
+                (item) => id !== item.id
+            )
+        )
+        handleAmountDecrease(event,price)
+        handleRemoveFromCart(event,id)
     }
 
     return (
@@ -58,14 +64,15 @@ function Cart({ cartItems }) {
             <Paper elevation={16} className='items-div'>
                 <div className='containing-div'>
                     {
-                        items.map(
+                        products.map(
                             (currentItem) => {
                                 return (
                                     <div className='item-div' key={currentItem.id}>
                                         <Items
-                                            item={items[currentItem.id]}
+                                            item={currentItem}
                                             handleAmountIncrease={handleAmountIncrease}
                                             handleAmountDecrease={handleAmountDecrease}
+                                            deleteProduct = {deleteProduct}
                                         />
                                     </div>
                                 )

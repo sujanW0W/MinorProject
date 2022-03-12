@@ -17,7 +17,7 @@ export default function CustomerRating(props) {
     const ratingData = {
       productID: props.id,
       userID: parseInt(localStorage.getItem('userID')),
-      rateProduct: value
+      rateProduct: parseInt(value)
     }
     console.log(ratingData);
     axios.post(url, ratingData)

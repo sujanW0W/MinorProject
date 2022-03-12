@@ -27,7 +27,7 @@ export default function SearchPage(props) {
 			
 			{product ?
 				 <ProductCard 
-					id = {product.productID}
+					id = {product.id}
 					name = {product.productName}
 					description = {product.productDescription}
 					category = {product.productCategory}
@@ -37,7 +37,7 @@ export default function SearchPage(props) {
 					handleAddToCart = {props.handleAddToCart}
 				/>
 				:
-				<h2>No such Products</h2>
+				<h2>Sorry, No such Products</h2>
 			}
 		  </div>
 			

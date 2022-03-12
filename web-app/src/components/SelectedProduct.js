@@ -72,7 +72,6 @@ export default function SelectedProduct(props) {
         <ProductDetails 
             // data={data} 
 			id={props.id}
-			name={props.name}
 			handleAddToCart = {props.handleAddToCart}
         />
         <ScrollingProducts 

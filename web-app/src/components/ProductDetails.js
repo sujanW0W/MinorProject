@@ -6,12 +6,12 @@ import './ProductDetails.css'
 
 export default function ProductDetails(props) {
 
-    const [value, setValue] = React.useState(0)
+    // const [value, setValue] = React.useState(0)
     const [product, setProduct] = React.useState(null)
 
-    const handleImageClick = (event, newValue) => {
-        setValue(newValue);
-    }
+    // const handleImageClick = (event, newValue) => {
+    //     setValue(newValue);
+    // }
 
     React.useEffect(
         () => {

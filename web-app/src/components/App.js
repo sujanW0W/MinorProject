@@ -205,15 +205,10 @@ class App extends React.Component {
 		localStorage.removeItem('loggedIn')
 		localStorage.removeItem('username')
 		localStorage.removeItem('userID')
+		localStorage.removeItem('cartItems')
 	}
 
-	isAuth = () => {
-		if (localStorage.getItem("token"))
-			return true
-		else
-			return false
-	}
-
+	
 	render() {
 		return (
 			<div>
@@ -234,13 +229,10 @@ class App extends React.Component {
 						<Route
 							path='/*'
 							element={
-								this.isAuth() ?
 									<Dashboard
 										handleLoggedOut={this.handleLoggedOut}
 										handleAddToCart={this.handleAddToCart}
 									/>
-									:
-									<Navigate to='/LoginRegister' />
 							}
 						/>
 					</Routes>
