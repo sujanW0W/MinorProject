@@ -1,0 +1,130 @@
+export const product=[
+    kitchen = [
+        {
+            id : 1,
+            name : 'chair',
+            description : 'Four legged chair',
+            image : 'https://www.dan-form.com/media/d5iiuemc/arch-chair-pebble-green-boucle-fabric-with-black-metal-legs-100205105-01-main.png?width=1920&mode=crop&heightratio=1',
+            category : 'kitchen' ,
+            price : 7000,
+        },
+        {
+            id : 2,
+            name : 'table',
+            description : 'Four legged chair with tables',
+            image : 'https://i.pinimg.com/564x/47/db/0a/47db0a16bf8679d3ba48d87379f18862.jpg',
+            category : 'kitchen' ,
+            price : 25000,
+        },
+        {
+            id : 3,
+            name : 'cupboard',
+            description : 'walls and floor kitchen cupboard',
+            image : 'https://i.pinimg.com/564x/a7/b9/16/a7b9168d10503841ea48921df6ddc68b.jpg',
+            category : 'kitchen' ,
+            price : 15000,
+        },
+        {
+            id : 4,
+            name : 'Light Bulbs',
+            description : 'Bright And Stylish blubs ',
+            image : 'https://i.pinimg.com/564x/8d/a5/3d/8da53db7556967d4426154d11126a293.jpg',
+            category : 'kitchen'
+        }],
+ 
+    bathroom = [
+        {
+            id : 1,
+            name : 'Shower',
+            description : 'Brand New Stainless Shower',
+            image : 'https://images-eu.ssl-images-amazon.com/images/I/31Z95-5stbL._SX300_SY300_QL70_FMwebp_.jpg',
+            category : 'Bathroom' ,
+            price : 9000,    
+        },
+        {
+            id : 2,
+            name : 'Bathtub',
+            description : 'Four legged chair',
+            image : 'https://t2w4c3s5.stackpathcdn.com/wp-content/uploads/2019/09/BW-02-XL-WHT-2020.jpg',
+            category : 'Bathroom' ,
+            price : 12000,
+        },
+        {
+            id : 4,
+            name : 'basin',
+            description : 'Four legged chair',
+            image : 'https://www.beautifulhomes.com/content/dam/beautifulhomes/images/202005/wash-basin-design-tips-for-diy-home-makeovers/Title-Wash-basin-1.jpg',
+            category : 'Bathroom' ,
+            price : 9000,
+        },
+ 
+    ],
+    art =[
+        {
+            id : 1,
+            name : 'Painting',
+            description : 'Famous Wall Art',
+            image : 'https://m.media-amazon.com/images/I/81nh7yEGiHL._SL1500_.jpg',
+            category : 'Art' ,
+            price : 5000,
+        },
+        {
+            id : 2,
+            name : 'traditional handicraft',
+            description : 'Nepali Hand made Karuwa',
+            image : 'https://i.pinimg.com/564x/f7/7e/98/f77e982b9f4605303f3b72102327373e.jpg',
+            category : 'Art' ,
+            price : 9000,
+        },
+        {
+            id : 3,
+            name : 'wall painting ',
+            description : 'More style and painting in walls',
+            image : 'https://i.pinimg.com/564x/b3/33/4a/b3334ae6c341c281cf7c639dce3d9b73.jpg',
+            category : 'Art' ,
+            price : 9000,
+        },
+        {
+            id : 4,
+            name : 'canvas',
+            description : 'Canvas Wall Art for Living Room Wall Decor for Bedroom',
+            image : 'https://m.media-amazon.com/images/I/71c+zy+x-3L._AC_SL1000_.jpg',
+            category : 'Art' ,
+            price : 9000,
+        },
+    ],
+    furniture=[
+        {
+            id : 1,
+            name : 'chair',
+            description : 'Classic stylish chair',
+            image : 'https://cdn.britannica.com/28/134028-050-E9567531/Card-table-mahogany-patina-gold-maker-stenciling-1828.jpg',
+            category : 'Furniture' ,
+            price : 4500,
+        },
+        {
+            id : 2,
+            name : 'sofa set',
+            description : 'More style and painting in walls',
+            image : 'https://magnoliahome.co.in/wp-content/uploads/2020/12/1.1-Almora-Sofa.jpg',
+            category : 'Furniture' ,
+            price : 27000,
+        },
+        {
+            id : 3,
+            name : 'Bed set ',
+            description : 'More style and painting in walls',
+            image : 'https://cdn.shopify.com/s/files/1/2660/5106/products/25519660_Orlando_Queen_Set_800x.jpg?v=1574885647',
+            category : 'Furniture' ,
+            price :30000,
+        },
+        {
+            id : 4,
+            name : 'cupboard',
+            description : 'More style and painting in walls',
+            image : 'https://5.imimg.com/data5/NK/RD/MY-8946719/wooden-wall-cabinet-500x500.jpg',
+            category : 'Furniture' ,
+            price : 45000,
+        },
+    ]  
+]

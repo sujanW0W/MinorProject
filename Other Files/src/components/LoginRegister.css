@@ -1,0 +1,10 @@
+.bg_image {
+    height: 100vh;
+    background: url('../../public/images/bg_login.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+
