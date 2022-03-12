@@ -1,13 +1,15 @@
 .outermost{
-    width: 30%;
-    margin: 20px auto;
+    margin: 20px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .nameField{
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 20px auto;
 }
 
 .name{
@@ -20,4 +22,14 @@
     font-weight: bold;
     margin-right: 5px;
     width: 150px;
+}
+
+.imgDiv{
+    width: 150px;
+    margin: 20px auto;
+}
+
+.imgDiv > img{
+    max-width: 100%;
+
 }
