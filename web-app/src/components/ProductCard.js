@@ -9,7 +9,7 @@ export default function ProductCard(props) {
     <div className="product-card" >
       <div className="product-image">
 
-        <Link to="/product=id" onClick={() => props.handleProductClick('event', props.id, props.name)}>
+        <Link to="/product=id" onClick={() => props.handleProductClick('event', props.id)}>
           <img src={imageURL} className="product-thumb" alt="" />
         </Link>
         <button className="card-btn" onClick={() => props.handleAddToCart('event', props.id)}>Add To Cart</button>

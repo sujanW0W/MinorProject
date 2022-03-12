@@ -81,7 +81,7 @@ class Dashboard extends React.Component {
 		)
 	}
 
-	handleProductClick = (event, productID, productName) => {
+	handleProductClick = (event, productID) => {
 
 		this.setState(
 			{

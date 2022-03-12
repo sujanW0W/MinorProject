@@ -7,7 +7,7 @@ import './ProductDetails.css'
 export default function ProductDetails(props) {
 
     // const [value, setValue] = React.useState(0)
-    const [product, setProduct] = React.useState(null)
+    const [product, setProduct] = React.useState([])
 
     // const handleImageClick = (event, newValue) => {
     //     setValue(newValue);
@@ -20,18 +20,21 @@ export default function ProductDetails(props) {
     )
 
     React.useEffect(() => {
-        axios.get(`http://localhost:8080/api/product/productById/${props.id}`)
-            .then((data) => { setProduct(data.data) })
+        getProduct()
     }, [])
 
-    const imageURL = product && `data:image/png;base64,${product.image}`;
+    const getProduct = () => {
+        axios.get(`http://localhost:8080/api/product/productById/${props.id}`)
+            .then((data) => { setProduct(data.data) })
+    }
 
+    const imageURL = product.image && `data:image/png;base64,${product.image}`;
+    console.log(imageURL)
     return (
         <div>
             <section className="product-details">
                 <div className="image-slider">
                     <img src={imageURL} alt="" className='fullImg' />
-
                     {/* <div className="product-images" >
                     <img 
                         src={process.env.PUBLIC_URL+props.data[0]}  
@@ -100,16 +103,8 @@ export default function ProductDetails(props) {
 
             <section className="detail-des">
                 <h2 className="heading">Description</h2>
-                <p className="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ipsum voluptatibus facere odit, a
-                    blanditiis id veritatis aspernatur perspiciatis neque? Velit ipsa, voluptatem cum obcaecati illo placeat
-                    atque eos Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias corporis quisquam nihil quos
-                    nisi quidem incidunt alias officiis impedit numquam rerum aut, sequi hic assumenda, ut laudantium odit eum
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore distinctio officiis voluptates
-                    blanditiis, magnam dolorem beatae repellendus corrupti est quisquam corporis necessitatibus rem nisi
-                    quibusdam dolores vero esse? Excepturi, Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-                    maxime sit rem vel dolorum natus modi consectetur esse quo ratione officiis dicta ullam quidem illo,
-                    repellendus quae hic nesciunt veniam!
-
+                <p className="des">
+                    {product.productDescription}
                 </p>
             </section>
         </div>
