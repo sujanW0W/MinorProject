@@ -4,14 +4,20 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
-import Settings from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import {Link} from 'react-router-dom'
 
 
 export default function UserIconDropMenu(props){
+
+    const handleAddProduct = (event) => {
+        props.handleClose();
+        if (!localStorage.getItem('loggedIn'))
+            props.AddProductNotAvailable('event')
+      }
+      
     return(
         <div> 
             <Menu
@@ -56,17 +62,17 @@ export default function UserIconDropMenu(props){
                                 <Avatar /> Profile
                             </MenuItem>
                         </Link>
+
+                        <Link to='/AddProduct' style={{textDecoration : 'none',color:'inherit'}}>
+                            <MenuItem  onClick={handleAddProduct} style={{marginLeft : '-5px'}}>
+                                <AddCircleOutlinedIcon fontSize='large' color='disabled' sx={{marginRight:'5px'}}/> Add Product
+                            </MenuItem>
+                        </Link>
                     
                         <Divider />
                     
-                        <MenuItem  onClick={props.handleClose}>
-                            <ListItemIcon>
-                                <Settings fontSize="small" />
-                            </ListItemIcon>
-                            Settings
-                        </MenuItem>
                         <Link to='/' style={{textDecoration : 'none',color:'inherit'}}>
-                        <MenuItem  onClick={props.handleLogout}>
+                        <MenuItem  onClick={props.handleLogout} >
                             <ListItemIcon>
                                 <LogoutIcon fontSize="small" />
                             </ListItemIcon>

@@ -1,17 +1,29 @@
 .hero-section{
     width: 100%;
-    height: calc(100vh - 120px);
-    background-image: url('../../public/images/canvas2.jpg');
-    background-size: cover;
+    height: calc(120vh - 130px);
+    background-image: url('../../public/background_cabinet.jpg');
+    background-size:cover;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    
+}
+@media only screen and (max-width:1025px){
+    .hero-section{
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+    }
 }
 
-
 .slogan{   
-    font-size: 50px;
-    font-style: italic;
+    font-size: 25px;
+    letter-spacing: 1vw;
+    padding: 5px;
+    border: 4px solid;
+    text-transform: uppercase;
+    
 }
 
 .hero-section .logo{
@@ -21,11 +33,20 @@
 }
 
 .hero-section .sub-heading{
-    margin: auto;
+    margin-top: 100px ;
     text-align: center;
-    color:#050605;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:rgb(199, 199, 199);
+    font-family: "Times New Roman", Times, serif;
     text-transform: capitalize;
-    font-size: 75px;
+    font-size: 70px;
     font-weight: 300px;
+    letter-spacing: 2vw;
+    
+}
+
+@media only screen and (max-width: 660px){
+    .content{
+        font-size: 10vw;
+    }
+
 }

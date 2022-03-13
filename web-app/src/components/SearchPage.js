@@ -13,7 +13,7 @@ export default function SearchPage(props) {
 
 	const getProduct = () => {
 		axios.get(`http://localhost:8080/api/product/${props.searched}`)
-			.then((data) => { setProduct(data.data[0]) })
+			.then((data) => { setProduct(data.data)})
 	}
 	const divStyle = {
 		margin: '20px',

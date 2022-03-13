@@ -1,23 +1,26 @@
 .collection-container{
-    height: 800px;
+    height: 90%;
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    grid-gap: 10px;
+    grid-gap: 5px;
     overflow: hidden;
-    border-width: 0px 100px;
-    border-color: white;
-    border-style: solid;
+  
 }
 .collection{
     position: relative;
 }
+
+
 .collection>div{
     width: 100%;
     height : 100%;
     display: flex;
 }
 .collectionImg{
-    width: 100%;
+    width: 97%;
+    margin-right: auto;
+    margin-left: auto;
+    transition: 2s ease-in-out;
 }
 
 
@@ -27,14 +30,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #000;
+    color: rgb(235, 235, 235);
     font-size: 50px;
     text-transform: capitalize;
 }
 
 .collection:nth-child(3){
     grid-column: span 2;
-    margin-bottom:1;
+    margin-bottom:5px;
 }
 
 .collection{
@@ -42,9 +45,17 @@
 }
 
 .collectionImg:hover{
-    transform: scale(1.1);
+    transform: scale(1.5);
 }
 
-.collection-item{
-    margin: auto;   
+.collection-item{ 
+    margin: auto;
+}
+
+@media only screen and (max-width){
+    .collection img{
+        width: 90%;
+        height: 90%;
+        object-fit: cover;}
+
 }

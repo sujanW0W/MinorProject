@@ -37,7 +37,7 @@ const Items = (props) => {
 
                 <div className='description'>
                     <p id='name'>{props.item.productName}</p>
-                    <p id='short'>{props.item.productDescription}</p>
+                    {/* <p id='short'>{props.item.productDescription}</p> */}
                 </div>
             </div>
 

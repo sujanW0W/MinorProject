@@ -23,7 +23,9 @@ export default function Header(props) {
     handleClose();
   }
 
-
+  const handleViewRecommendation = (event) => {
+    navigate('/recommendations')
+  }
 
   const navigate = useNavigate();
 
@@ -41,15 +43,6 @@ export default function Header(props) {
       props.cartNotAvailable('event');
     }
   }
-
-  const handleAddProduct = (event) => {
-    if (localStorage.getItem('loggedIn')) {
-      navigate('/AddProduct')
-    } else {
-      props.AddProductNotAvailable('event')
-    }
-  }
-
 
   return (
     <div>
@@ -99,6 +92,7 @@ export default function Header(props) {
               anchorEl={anchorEl}
               loggedIn={localStorage.getItem('loggedIn')}
               handleLogout={handleLogout}
+              AddProductNotAvailable={props.AddProductNotAvailable}
             />
 
             <IconButton
@@ -113,9 +107,9 @@ export default function Header(props) {
 
             <button
               className='add-product'
-              onClick={handleAddProduct}
+              onClick={handleViewRecommendation}
             >
-              Add Product
+              View Recommendations
             </button>
 
           </div>

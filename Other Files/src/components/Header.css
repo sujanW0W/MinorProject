@@ -53,6 +53,9 @@
     .add-product{
         font-size: 1vw;
     }
+    .nav{
+        padding: 5px 5vw;
+    }
 
 }
 .search{

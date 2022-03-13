@@ -109,6 +109,15 @@ class Dashboard extends React.Component {
 	}
 
 	handleAddToCart = (event, id) => {
+		let flag = false;
+		this.state.cartItems.forEach(
+			(item) => {
+				if(item === id){
+					flag = true;
+				}
+			}
+		)
+		!flag &&
 		this.setState(
 			{
 				cartItems: [...this.state.cartItems, id]

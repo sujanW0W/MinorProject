@@ -56,11 +56,11 @@ export default function Footer() {
             <p className=" info"> <span className='email'>Support emails: </span><span className='click'>support.homedecor@gmail.com </span> </p>
             <p className="info"><span className='phone'>telephone: </span><span className='click'> 9803293473</span> , <span className='click'>9384747283 </span></p>
             <div className="footer-social-container">
-                <div style={{margin: 'auto 0px'}}>
+                <div style={{margin: 'auto 0px'}}  >
                     <a href="#" className="social-link">Terms & Services</a>
                     <a href="#" className="social-link">Privacy page</a>       
                 </div>
-                <div>
+                <div className='icons-styl'>
                     <IconButton
                         href='https://www.facebook.com'
                         target = '_blank'

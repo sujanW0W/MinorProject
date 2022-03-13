@@ -1,6 +1,8 @@
 import React from 'react'
 import './AddProduct.css'
 import { TextField,InputLabel, MenuItem, Select ,FormControl} from '@mui/material'
+import Snackbar from '@mui/material/Snackbar';
+
 
 import axios from 'axios'
 
@@ -13,6 +15,27 @@ class AddProduct extends React.Component {
 		price : '',
 		// discountedPrice : '',
 		// sellingPrice : ''
+
+		//Snackbar
+		open: false,
+		vertical: 'top',
+		horizontal: 'right'
+	}
+
+	handleSnackbar = (event) => {
+		this.setState(
+			{
+				open: true
+			}
+		)
+	}
+
+	handleSnackbarClose = () => {
+		this.setState(
+			{
+				open: false
+			}
+		)
 	}
 
 	refreshComp = (event) => {
@@ -72,7 +95,8 @@ class AddProduct extends React.Component {
 		)
 		
 	//	window.location.reload(true)  Yesle page completely reload garyo. Issue k bhayo bhanda jun responses and console message aako hunchan. sabai delete bhayo. SO better to re-render the component by changing state.
-			console.log(this.state)
+		this.handleSnackbar();
+
 		this.refreshComp()
 	}
 
@@ -208,6 +232,14 @@ class AddProduct extends React.Component {
 			>
 				Add Product
 			</button>
+
+			<Snackbar
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				open={this.state.open}
+				onClose={this.handleSnackbarClose}
+				message="Product Added Successfully."
+
+			/>
 		</div>
 	)
 	}
