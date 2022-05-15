@@ -16,7 +16,7 @@ export const Products = [
         quantity : 1
     },
     {
-        id : 1,
+        id : 3,
         title : 'curtain',
         description : 'Black curtain',
         price : 'Nrs. 2000',
@@ -24,7 +24,7 @@ export const Products = [
         quantity : 3
     },
     {
-        id : 1,
+        id : 4,
         title : 'bed',
         description : 'Queen size',
         price : 'Nrs. 25000',

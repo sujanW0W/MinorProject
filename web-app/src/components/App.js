@@ -14,6 +14,7 @@ import {
 	Route,
 	Navigate,
 } from 'react-router-dom';
+import SellerDashboard from './SellerDashboard/SellerDashboard';
 
 class App extends React.Component {
 
@@ -234,6 +235,9 @@ class App extends React.Component {
 										handleAddToCart={this.handleAddToCart}
 									/>
 							}
+						/>
+						<Route path='/sellerDashboard'
+							element={<SellerDashboard />}
 						/>
 					</Routes>
 				</BrowserRouter>
