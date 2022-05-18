@@ -1,7 +1,7 @@
 import React from 'react'
 import './Admin.css'
 
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import { Routes,Route } from 'react-router-dom';
 import Welcome from './Welcome'
 import AdminUser from './AdminUser'
@@ -13,8 +13,8 @@ export default function Admin() {
             <h1>Admin</h1>
             <nav className='adminNav'>
                 <ul>
-                    <li><Link to='/admin/users' className='adminLink'>Users</Link></li>
-                    <li><Link to='/admin/products' className='adminLink'>Products</Link></li>
+                    <li><Link to='/admin-users' className='adminLink'>Users</Link></li>
+                    <li><Link to='/admin-products' className='adminLink'>Products</Link></li>
                 </ul>
             </nav>
             <div>
@@ -24,11 +24,11 @@ export default function Admin() {
                             element={<Welcome />}
                         />
                         <Route 
-                            path='/users'
-                            element = {<AdminUser />}
+                            path='/admin-users'
+                            element = {<Navigate to={<AdminUser />}/>}
                         />
                         <Route 
-                            path='/products'
+                            path='/admin-products'
                             element = {<AdminProducts />}
                         />
                     </Routes>

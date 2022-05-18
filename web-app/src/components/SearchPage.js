@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default function SearchPage(props) {
 
-	const [product, setProduct] = React.useState(null)
+	const [product, setProduct] = React.useState([])
 
 	React.useEffect(() => {
 
@@ -12,8 +12,8 @@ export default function SearchPage(props) {
 	}, [])
 
 	const getProduct = () => {
-		axios.get(`localhost:8080/api/product/getProductByName/${props.searched}`)
-			.then((data) => { setProduct(data.data)})
+		axios.get(`http://localhost:8080/api/product/getProductByName/${props.searched}`)
+			.then((response) => { setProduct(response.data[0])})
 	}
 	const divStyle = {
 		margin: '20px',
@@ -31,7 +31,7 @@ export default function SearchPage(props) {
 						description={product.productDescription}
 						category={product.productCategory}
 						price={product.price}
-						img={product.image}
+						img={product.imageUrl}
 						handleProductClick={props.handleProductClick}
 						handleAddToCart={props.handleAddToCart}
 					/>
