@@ -8,8 +8,18 @@ export default function Recommendations(props) {
     const [products, setProducts] = React.useState(null)
     React.useEffect(
         () => {
-            axios.get(`http://localhost:8080/api/recommendProduct/userBased/${localStorage.getItem('userID')}`)
+            let url = `localhost:8080/api/recommendProduct/userBased/${localStorage.getItem('userID')}`
+            const config ={
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type" : "application/json",
+                    "Authorization" : `Bearer ${localStorage.getItem('token')}`,
+                }
+            }
+            
+            axios.get(url,config)
                 .then((response) => {
+                    console.log(response)
                     setProducts(
                         response.data
                     )

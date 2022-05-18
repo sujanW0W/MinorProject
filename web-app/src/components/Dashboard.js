@@ -64,6 +64,7 @@ class Dashboard extends React.Component {
 					this.setState({ products: response.data })
 				}
 			)
+			
 	}
 
 	handleSearch = (event) => {

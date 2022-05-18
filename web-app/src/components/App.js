@@ -12,9 +12,10 @@ import {
 	BrowserRouter,
 	Routes,
 	Route,
-	Navigate,
 } from 'react-router-dom';
 import SellerDashboard from './SellerDashboard/SellerDashboard';
+import ForgotPassword from './ForgotPassword';
+import Admin from './Admin/Admin';
 
 class App extends React.Component {
 
@@ -238,6 +239,14 @@ class App extends React.Component {
 						/>
 						<Route path='/sellerDashboard'
 							element={<SellerDashboard />}
+						/>
+						<Route 
+							path='/forgotPassword' 
+							element={<ForgotPassword />}
+						/>
+						<Route 
+							path='/admin'
+							element={<Admin />}
 						/>
 					</Routes>
 				</BrowserRouter>

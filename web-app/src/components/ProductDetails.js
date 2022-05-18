@@ -24,17 +24,18 @@ export default function ProductDetails(props) {
     }, [])
 
     const getProduct = () => {
-        axios.get(`http://localhost:8080/api/product/productById/${props.id}`)
-            .then((data) => { setProduct(data.data) })
+        axios.get(`http://localhost:8080/api/product/getProductById/${props.id}`)
+            .then((data) => { 
+                console.log(data)
+                setProduct(data.data)
+             })
     }
 
-    const imageURL = product.image && `data:image/png;base64,${product.image}`;
-    console.log(imageURL)
     return (
         <div>
             <section className="product-details">
                 <div className="image-slider">
-                    <img src={imageURL} alt="" className='fullImg' />
+                    <img src={process.env.PUBLIC_URL+product.imageUrl}  alt="" className='fullImg' />
                     {/* <div className="product-images" >
                     <img 
                         src={process.env.PUBLIC_URL+props.data[0]}  

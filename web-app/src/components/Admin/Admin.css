@@ -1,0 +1,41 @@
+.admin{
+    background-color: gray;
+}
+
+h1{
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+}
+
+.adminNav{
+    background-color: #f5f5f5;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul{
+    list-style-type: none;    
+    margin: 0px;
+    font-size: larger;
+}
+
+ul li{
+    float: left;
+}
+
+.adminLink{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.adminLink:hover{
+    background-color: gray;
+}
+

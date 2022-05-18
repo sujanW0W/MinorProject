@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import {TextField, Button, Link} from '@mui/material'
+import {TextField, Button} from '@mui/material'
 import './Login.css'
 import {Grid, Avatar} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import Snackbar from '@mui/material/Snackbar';
 
-
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 function Login(props) {
 
@@ -107,11 +106,9 @@ function Login(props) {
         </Button> 
 
         <Link 
-            href = "https://www.google.com"
-            target = '_blank'
+            to = '/forgotPassword'
             title = 'Forgot Password'
-            variant = 'button'
-            underline = 'none'
+            className='loginLink'
         >
             Forgot Password?
         </Link>
@@ -132,10 +129,9 @@ function Login(props) {
             </label>
         
         <Link
-            href='/'
+            to='/'
             variant='button'
-            underline='none'
-            className='back'
+            className='back loginLink'
         >
             Back To Homepage
         </Link>

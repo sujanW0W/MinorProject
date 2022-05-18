@@ -7,7 +7,7 @@ import Register from './Register'
 import './LoginRegister.css'
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const { children, value, index } = props;
 
     return (
         <div

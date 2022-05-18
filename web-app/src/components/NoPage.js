@@ -1,5 +1,3 @@
-import { ClassNames } from '@emotion/react'
-import { margin, minWidth } from '@mui/system'
 import React from 'react'
 
 export default function NoPage(){

@@ -26,7 +26,7 @@ export default function SellerDashboard() {
     }
 
     return(
-        <div>
+        <div className='seller'>
             <nav>
                 <Link to='/' className='navLink'>
                     Back to Homepage

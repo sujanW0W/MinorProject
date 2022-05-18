@@ -12,7 +12,7 @@ export default function SearchPage(props) {
 	}, [])
 
 	const getProduct = () => {
-		axios.get(`http://localhost:8080/api/product/${props.searched}`)
+		axios.get(`localhost:8080/api/product/getProductByName/${props.searched}`)
 			.then((data) => { setProduct(data.data)})
 	}
 	const divStyle = {

@@ -24,3 +24,11 @@
     align-items: flex-end;
 }
 
+.loginLink{
+    text-decoration: none;
+    color: inherit
+}
+
+.loginLink:hover{
+    text-decoration: underline;
+}

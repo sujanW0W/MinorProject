@@ -30,7 +30,7 @@ export default function SecondScrollingProducts(props) {
 
     return (
         <section className="product">
-            <h2 className="product-category">Best Selling Paintings</h2>
+            <h2 className="product-category">Best Selling Products</h2>
             <IconButton
                 id="pre-btn"
             >
@@ -52,7 +52,7 @@ export default function SecondScrollingProducts(props) {
                                 description={product.productDescription}
                                 category={product.productCategory}
                                 price={product.price}
-                                img={product.image}
+                                img={product.imageUrl}
                                 handleProductClick={props.handleProductClick}
                                 key={product.id}
                                 handleAddToCart={props.handleAddToCart}

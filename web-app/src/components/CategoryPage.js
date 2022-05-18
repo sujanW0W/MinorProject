@@ -33,14 +33,13 @@ export default function SearchPage(props) {
                                     description={product.productDescription}
                                     category={product.productCategory}
                                     price={product.price}
-                                    img={product.image}
+                                    img={product.imageUrl}
                                     handleProductClick={props.handleProductClick}
                                     handleAddToCart={props.handleAddToCart}
                                 />
                         }
                     )
                 }
-                {console.log(product)}
             </div>
 
         </>
