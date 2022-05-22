@@ -15,13 +15,14 @@ import NoPage from './NoPage'
 import Recommendations from './Recommendations'
 import CategoryPage from './CategoryPage'
 
+
+
 import {
 	Routes,
 	Route,
 	Navigate
 } from 'react-router-dom'
 import axios from 'axios'
-import { products } from './productItems'
 
 class Dashboard extends React.Component {
 	state = {
@@ -85,7 +86,6 @@ class Dashboard extends React.Component {
 	}
 
 	handleProductClick = (event, productID) => {
-
 		this.setState(
 			{
 				id: productID,
@@ -109,22 +109,44 @@ class Dashboard extends React.Component {
 		)
 	}
 
-	handleAddToCart = (event, id) => {
-		let flag = false;
-		this.state.cartItems.forEach(
-			(item) => {
-				if(item === id){
-					flag = true;
-				}
+	handleAddToCart = (event, product) => {
+		// let flag = false;
+		// this.state.cartItems.forEach(
+		// 	(item) => {
+		// 		if(item === id){
+		// 			flag = true;
+		// 		}
+		// 	}
+		// )
+		// !flag &&
+		// this.setState(
+		// 	{
+		// 		cartItems: [...this.state.cartItems, id]
+		// 	}
+		// )
+		let dateTime = new Date();
+		let date;
+		if(dateTime.getMonth() < 9)
+			date = `${dateTime.getFullYear()}-0${dateTime.getMonth()+1}-${dateTime.getDate()}`;
+		else
+			date = `${dateTime.getFullYear()}-${dateTime.getMonth()+1}-${dateTime.getDate()}`;
+		
+		const data = [{
+			addedDate : date,
+			price : product.price,
+			quantity:'1',
+			productId : product.id,
+			user_id : localStorage.getItem('userID')
+		}]
+		axios.post(`http://localhost:8080/api/cart/saveCart/${data[0].user_id}`,data)
+		.then(
+			(response) => {
+				console.log(response)
 			}
 		)
-		!flag &&
-		this.setState(
-			{
-				cartItems: [...this.state.cartItems, id]
-			}
-		)
+	
 	}
+
 
 	handleRemoveFromCart = (event, id) => {
 		const items = this.state.cartItems.filter(
@@ -162,7 +184,6 @@ class Dashboard extends React.Component {
 					handleSearch={this.handleSearch}
 					handleSearchButton={this.handleSearchButton}
 					handleLogoClick={this.handleLogoClick}
-
 					handleLoggedOut={this.props.handleLoggedOut}
 					cartNotAvailable={this.cartNotAvailable}
 					AddProductNotAvailable={this.AddProductNotAvailable}
@@ -224,6 +245,7 @@ class Dashboard extends React.Component {
 									<Navigate to='/LoginRegister' />
 							}
 						/>
+
 						<Route
 							path='/AddProduct'
 							element={
@@ -243,6 +265,7 @@ class Dashboard extends React.Component {
 								/>
 							}
 						/>
+
 
 						<Route
 							path='/'

@@ -10,8 +10,6 @@ export default function CustomerRating(props) {
     postRating(event.target.value);
   }
 
-
-
   const postRating = (value) => {
     const url = 'http://localhost:8080/api/product/rateproduct'
     const ratingData = {

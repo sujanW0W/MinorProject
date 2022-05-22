@@ -70,7 +70,7 @@ class AddProduct extends React.Component {
 		let formData = new FormData();
 
 		
-		formData.append('username',username);
+		formData.append('userId',localStorage.getItem('userID'));
 		formData.append('productName',productName);
 		formData.append('productDescription',description);
 		formData.append('file', image);
@@ -80,7 +80,7 @@ class AddProduct extends React.Component {
 		axios(
 			{
 				method : 'POST',
-				url : 'http://localhost:8080/api/product/add',
+				url : 'http://localhost:8080/api/product/admin/add',
 				data : formData,
 				headers : {
 					'content-type' : 'multipart/form-data'

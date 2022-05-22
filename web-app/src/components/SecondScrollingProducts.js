@@ -47,12 +47,7 @@ export default function SecondScrollingProducts(props) {
                     props.productsList && props.productsList.map(
                         (product) => {
                             return <ProductCard
-                                id={product.id}
-                                name={product.productName}
-                                description={product.productDescription}
-                                category={product.productCategory}
-                                price={product.price}
-                                img={product.imageUrl}
+                                productItem = {product}
                                 handleProductClick={props.handleProductClick}
                                 key={product.id}
                                 handleAddToCart={props.handleAddToCart}

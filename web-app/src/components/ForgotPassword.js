@@ -4,7 +4,7 @@ import { TextField, Button, Paper } from "@mui/material";
 import { Grid, Avatar } from "@mui/material";
 import axios from "axios";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [userName, setUserName] = useState("");
@@ -23,28 +23,36 @@ const ForgotPassword = () => {
   const [flag, setFlag] = useState(false);
 
   const resetClicked = function (name) {
-  const data = {
-    username : userName,
-    email : email
-  }
+
     if(name === 'reset'){
-        axios.post('localhost:8080/api/user/forgetPassword',data)
+
+      let formData = new FormData();
+      formData.append('username',userName);
+      formData.append('email',email)
+
+        axios.post('http://localhost:8080/api/user/forgetPassword',formData)
         .then(
             (response) => {
-                console.log(response)
+                if(response.status === 200)
+                  setFlag(true)
+            }
+            )
+        
+     }
+    else{
+      let formData = new FormData();
+      formData.append('token',token);
+      formData.append('newPassword',password);
+
+        axios.put(`http://localhost:8080/api/user/resetPassword/${userName}`,formData)
+        .then(
+            (response)=> {
+                if(response.status === 200){
+                  <Navigate to='/LoginRegister'/>
+                }
             }
         )
-        // if(token !== null)
-        //     setFlag(true)
-     }
-    // else{
-    //     axios.post(url)
-    //     .then(
-    //         (response)=> {
-    //             console.log(password +'changed')
-    //         }
-    //     )
-    // }
+    }
   };
 
   const avatarStyle = {

@@ -1,83 +1,144 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './SellerDashboard.css' 
-import {Products} from './../ProductsCollection'
-import  ItemsTable  from './ItemsTable'
+import axios from 'axios'
+import { IconButton } from '@mui/material'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import UserIconDropMenu from './../UserIconDropMenu'
+import TableComp from '../TableComp'
 
-//api calls garera array extract garisake pachi array as a children pathaune.
 
-export default function SellerDashboard() {
-    const [items,setItems] = React.useState([]);
+export default function SellerDashboard(props) {
 
-    React.useEffect(
-        () => {
-            setItems(Products)
-        },[]
-    )
+    const navigate = useNavigate()
 
-    const handleDelivered= (id) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const handleLogout = (event) => {
+      props.handleLoggedOut();
+      handleClose();
+      navigate('/LoginasSeller')
+    }
 
-        setItems(
-            items.filter(
-                (item) => 
-                    item.id !==id
-            )
+    const [products,setProducts] = React.useState([]);
+    const [listdItem,setListedItems] = React.useState([]);
+
+    const getProducts = () => {
+
+        axios.get(`http://localhost:8080/api/getOrder/${localStorage.getItem('userID')}`)
+        .then(
+            (response) => {
+                setProducts(response.data)
+            }
         )
     }
 
+    const getListedItems = () => {
+        axios.get(`http://localhost:8080/api/product/getConfirmedProduct/${localStorage.getItem('userID')}`)
+        .then(
+            (response) => {
+                setListedItems(response.data)
+            }
+        )
+    }
+
+    React.useEffect(
+        () =>  {
+            getProducts();
+            getListedItems();
+        },[]  
+    )
+
+
+    const handleAdd = (event) => {
+        navigate('/addProduct')
+    }
+
+    const handleProducts = (event,orderId) => {
+        setProducts(products.filter(
+            (item) => {
+                return orderId !== item.id
+            }
+        )
+        )
+        axios.delete(`http://localhost:8080/api/deleteOrder/${orderId}`)
+        .then(
+            (response) => {
+                console.log(response)
+            }
+        )
+        
+    }
+
     return(
-        <div className='seller'>
+        <div className='navbar'>
             <nav>
-                <Link to='/' className='navLink'>
-                    Back to Homepage
-                </Link>
                 <h1>
                     Dashboard
                 </h1>
-                <Link to='/addProduct' className='navLink'>
+                {/* <Link to='/addProduct' className='navLink'>
                     Add Product
-                </Link>
+                </Link> */}
+                <div style={{display: 'flex', margin:'15px', alignItems:'center'}}>
+            <div
+              className='profile-div'
+              onClick={handleClick}
+            >
+              <IconButton>
+                <AccountCircleIcon
+                  sx={{ color: '#383838' }}
+                  fontSize='large'
+                />
+              </IconButton>
+              {localStorage.getItem('loggedIn') && <p className='profileName' onClick={handleClick}>{localStorage.getItem('username')}</p>}
+            </div>
+
+            <UserIconDropMenu
+              handleClose={handleClose}
+              open={open}
+              anchorEl={anchorEl}
+              loggedIn={localStorage.getItem('loggedIn')}
+              handleLogout={handleLogout}
+              name = 'seller'
+            />
+                <button className='add-product' onClick={handleAdd} style={{marginRight:'30px',padding:'5px 50px '}}>
+                    Add Product
+                </button>
+                </div>
             </nav>
 
-            <div className='tableContainer'>
-                <h1 className='tableHead'>
-                    Listed Items
-                </h1>
-                <table className='list'>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <ItemsTable 
-                        productArray = {items}
-                        isTable = {0}
-                    />
-                </table>
-
-                <h1 className='orders'>
+            
+            <h1 className='product-category' style={{margin:'10px'}}>
                     Ordered Items
                 </h1>
-                <table className='list'>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <ItemsTable 
-                        productArray = {items}
-                        isTable = {1}
-                        handleDelivered = {handleDelivered}
-                    />
-                </table>
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <TableComp 
+                name = 'ordered'
+                products = {products}
+                handleProducts = {handleProducts}
+                />
             </div>
+            <br />
+            <h1 className='product-category' style={{margin:'10px'}}>
+                    Listed Items
+                </h1>
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <TableComp 
+                name = 'confirmed'
+                products = {listdItem}
+                
+                />
+            </div>
+
+            
+            <p className="footer-credit" style={{backgroundColor:'#383838'}}>Home Decor, Make Your Home Special</p>
         </div>
 
     )

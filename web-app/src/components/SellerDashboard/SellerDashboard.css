@@ -1,56 +1,23 @@
-.seller{
-    background-color: gray;
-}
 nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: #d1d1d1;
     padding: 0px 30px 0px 30px;
     font-size: large;
 }
 
-.navLink{
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
+.table th{
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 150;
+    font-size: 1.2em;
+    letter-spacing: 0.00938em;
 }
 
-.navLink:hover{
-    text-decoration: underline;
+.table td{
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 100;
+    font-size: 1.1em;
+    letter-spacing: 0.00938em;
+    text-transform: capitalize;
 }
-
-.tableHead{
-    text-align: left;
-}
-
-.tableContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.list{
-    width: 75%;
-    margin-bottom: 20px;
-    background-color: white;
-    z-index: 10;
-    box-shadow: 5px 5px 10px lightgray;
-
-}
-
-td{
-    width: 100px;
-    height: 150px;
-    text-align: center;
-}
-
-.productImage{
-    max-width: 100%;
-}
-
-.btn{
-    width: 120px;
-}
-

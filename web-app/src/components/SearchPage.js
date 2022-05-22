@@ -26,12 +26,7 @@ export default function SearchPage(props) {
 
 				{product ?
 					<ProductCard
-						id={product.id}
-						name={product.productName}
-						description={product.productDescription}
-						category={product.productCategory}
-						price={product.price}
-						img={product.imageUrl}
+						productItem = {product}
 						handleProductClick={props.handleProductClick}
 						handleAddToCart={props.handleAddToCart}
 					/>

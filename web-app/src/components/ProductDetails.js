@@ -25,12 +25,10 @@ export default function ProductDetails(props) {
 
     const getProduct = () => {
         axios.get(`http://localhost:8080/api/product/getProductById/${props.id}`)
-            .then((data) => { 
-                console.log(data)
+            .then((data) => {
                 setProduct(data.data)
              })
     }
-
     return (
         <div>
             <section className="product-details">
@@ -88,7 +86,7 @@ export default function ProductDetails(props) {
                 <input type="radio" name="size" value="XXL" hidden id="XXL-size" />
                     <label className="size-radio-btn">XXL</label> */}
                         <div>
-                            <button className="btn cart-btn" onClick={() => props.handleAddToCart('event', props.id)}>add to cart</button>
+                            <button className="btn cart-btn" onClick={() => props.handleAddToCart('event', product)}>add to cart</button>
                             {/* <button className="btn">add to wishlist</button>   */}
                         </div>
                     </div>

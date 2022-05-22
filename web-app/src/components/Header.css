@@ -4,8 +4,7 @@
     left: 0;
     background-color: #f5f5f5;
     z-index: 9;
-    display: inline-block;
-    width: 100%;
+    display: block;
     overflow-x: hidden;
 
 }
@@ -13,7 +12,7 @@
 .nav{
     padding: 10px 8vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     
 }
 
@@ -28,6 +27,7 @@
 .nav-items{
     display: flex;
     align-items: center;
+    justify-content: right;
     width: 100%;
 }
 

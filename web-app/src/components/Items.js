@@ -2,13 +2,16 @@ import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
+import axios from 'axios';
 
 const Items = (props) => {
 
     const [number, setNumber] = React.useState(1);
 
     React.useEffect(
-        () => props.handleAmountIncrease('event', props.item.price), []
+        () => {props.handleAmountIncrease('event', props.item.price)
+           
+        }, []
     )
 
     const handlePlus = (event) => {
@@ -25,14 +28,12 @@ const Items = (props) => {
 
     let price = number * props.item.price;
 
-    const imageURL = props.item && `data:image/png;base64,${props.item.image}`;
-
     return (
 
         <div className='item-in-cart' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             <div className='image-desc'>
                 <div className='product-img'>
-                    <img src={imageURL} alt="NA" />
+                    <img src={props.item.imageUrl} alt="NA" />
                 </div>
 
                 <div className='description'>
@@ -73,6 +74,18 @@ const Items = (props) => {
                     name='delete'
                     className='deleteIcon'
                     onClick={() => props.deleteProduct('event', props.item.id, props.item.price)}
+                    // onClick = {() => {
+                    //     let formData = new FormData();
+                        
+                    //     formData.append('productId',props.item.productId)
+                    //     formData.append('userId',parseInt(localStorage.getItem('userID')))
+                        
+                    //     axios.delete(`http://localhost:8080/api/cart/deleteCart/`,formData)
+                    //     .then(
+                    //         (response) => {console.log(response)}
+                    //     )
+                    // }
+                //}
                 />
             </div>
         </div>

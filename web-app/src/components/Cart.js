@@ -1,31 +1,40 @@
 import React from 'react'
 import './Cart.css'
 import Items from './Items'
-import { Scrollbars } from 'react-custom-scrollbars-2'
 import { Paper } from '@mui/material'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 // import {products} from './productItems'
 
-function Cart({ cartItems, handleRemoveFromCart }) {
+function Cart({ handleRemoveFromCart }) {
     const [products, setProducts] = React.useState([])
+
+    const navigate = useNavigate()
 
     React.useEffect(
         () => {
-            cartItems.forEach(
-                (id) =>
-                    axios.get(`http://localhost:8080/api/product/productById/${id}`)
-                        .then(
-                            (response) => {
-                                setProducts(
-                                    prevState => [...prevState, response.data]
-                                )
-                            }
-                        )
-                        .catch(
-                            (err) => console.log(err)
-                        )
-            )
+            axios.get(`http://localhost:8080/api/cart/getCart/${localStorage.getItem('userID')}`)
+            .then(
+                (response) => {
+                        setProducts(response.data)
+                    }
+                    )
+
+            // cartIds.forEach(
+            //     (id) =>
+            //         axios.get(`http://localhost:8080/api/product/getProductById/${id}`)
+            //             .then(
+            //                 (response) => {console.log(response)
+            //                     setProducts(
+            //                         prevState => [...prevState, response.data]
+            //                     )
+            //                 }
+            //             )
+            //             .catch(
+            //                 (err) => console.log(err)
+            //             )
+            // )
         }, []
     )
 
@@ -41,13 +50,42 @@ function Cart({ cartItems, handleRemoveFromCart }) {
 
     const handleCheckout = (event) => {
         console.log('Order placed.')
-        localStorage.removeItem('cartItems')
+        // localStorage.removeItem('cartItems')
+
+        let dateTime = new Date();
+		let date;
+		if(dateTime.getMonth() < 9)
+			date = `${dateTime.getFullYear()}-0${dateTime.getMonth()+1}-${dateTime.getDate()}`;
+		else
+			date = `${dateTime.getFullYear()}-${dateTime.getMonth()+1}-${dateTime.getDate()}`;
+        let dataArray = [];
+        products.forEach(
+            (item) => {
+                const data ={
+                    buyerId : localStorage.getItem('userID'),
+                    orderDate : date,
+                    price : item.price,
+                    productId : item.productId,
+                    quantity : '1',
+                    sellerId : item.sellerId
+                }
+                dataArray.push(data);
+            }
+        )
+        axios.post(`http://localhost:8080/api/saveOrder/${localStorage.getItem('userID')}`,dataArray)
+                .then(
+                    (response) => {
+                        console.log(response)
+                    }
+                )
+            navigate('/')
     }
 
     const deleteProduct = (event, id, price) => {
-        setProducts(
-            products.filter(
-                (item) => id !== item.id
+           setProducts(products.filter(
+                (item) => {
+                    return id != item.id
+                }
             )
         )
         handleAmountDecrease(event, price)
@@ -67,7 +105,7 @@ function Cart({ cartItems, handleRemoveFromCart }) {
                         products.map(
                             (currentItem) => {
                                 return (
-                                    <div className='item-div' key={currentItem.id}>
+                                    <div className='item-div' key={currentItem.productId}>
                                         <Items
                                             item={currentItem}
                                             handleAmountIncrease={handleAmountIncrease}

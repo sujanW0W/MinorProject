@@ -3,7 +3,6 @@ import './ScrollingProducts.css'
 import { IconButton } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ProductCard from './ProductCard'
-import { products } from './productItems'
 
 
 export default function ScrollingProducts(props) {
@@ -49,12 +48,7 @@ export default function ScrollingProducts(props) {
                     props.productsList && props.productsList.map(
                         (product) => {
                             return <ProductCard
-                                id={product.id}
-                                name={product.productName}
-                                description={product.productDescription}
-                                category={product.productCategory}
-                                price={product.price}
-                                img={product.imageUrl}
+                                productItem = {product}
                                 handleProductClick={props.handleProductClick}
                                 key={product.id}
                                 handleAddToCart={props.handleAddToCart}

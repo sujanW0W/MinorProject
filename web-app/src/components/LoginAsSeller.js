@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {TextField, Button} from '@mui/material'
 import './Login.css'
-import {Grid, Avatar} from '@mui/material';
+import {Grid, Avatar, Paper, Box} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import Snackbar from '@mui/material/Snackbar';
 
@@ -32,10 +32,10 @@ function Login(props) {
         if(!username || !password) {
             console.log('Field Missing') //Add alert.
         }else{
-            props.handleSubmit('event');
+            props.handleSubmit('event','seller');
 
             if(status === 200){
-                navigate('/')
+                navigate('/sellerDashboard')
             }else{
                 handleSnackbar();
                 console.log('User Not Found.')
@@ -49,10 +49,15 @@ function Login(props) {
     }
 
   return (
-    <div style={{padding:'20px 15px 10px 15px'}}>
+    <div>
+        <Grid className = 'grid, bg_image' style={{overflow:'auto'}}>
+            <Paper elevation={16} className='paper'>
+
+                <Box fullWidth sx={{ borderBottom: 1, borderColor: 'divider',padding:'10px' }}>
         <Grid align = 'center'>
             <Avatar style={avatarStyle}> <LockIcon /> </Avatar>
-            <h1 className='head'>Sign In</h1>   {/*In register.css */}
+            <h1 className='head'>Sign In</h1> 
+            <h1 className='head'>Seller</h1> 
         </Grid>
 
         <TextField 
@@ -116,34 +121,6 @@ function Login(props) {
         <br />
         
         <div style={{margin : '5px 0px'}}>
-            <label className='rememberMe'>
-                Don't have an Account?
-                <Button
-                    type='submit'
-                    variant='outlined'
-                    fullWidth={true}
-                    onClick={()=>props.handleTabChange('event',1)}
-                >
-                    Sign Up
-                </Button>
-            </label>
-
-        <Link
-            to='/'
-            variant='button'
-            className='back loginLink'
-        >
-            Back To Homepage
-        </Link>
-
-        <Link
-            to='/LoginasSeller'
-            variant='button'
-            className='back loginLink'
-        >
-           Login As Seller
-        </Link>
-        
         <Link
             to='/LoginasAdmin'
             variant='button'
@@ -153,6 +130,9 @@ function Login(props) {
         </Link>
 
         </div>
+        </Box>
+        </Paper>
+        </Grid>
 
         <Snackbar
 				anchorOrigin={{vertical:'top',horizontal:'right'}}

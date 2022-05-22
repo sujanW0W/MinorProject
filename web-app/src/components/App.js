@@ -12,10 +12,14 @@ import {
 	BrowserRouter,
 	Routes,
 	Route,
+	Navigate
 } from 'react-router-dom';
-import SellerDashboard from './SellerDashboard/SellerDashboard';
 import ForgotPassword from './ForgotPassword';
+import LoginAsSeller from './LoginAsSeller'
+import LoginAsAdmin from './LoginAsAdmin'
+import SellerDashboard from './SellerDashboard/SellerDashboard';
 import Admin from './Admin/Admin';
+
 
 class App extends React.Component {
 
@@ -81,71 +85,36 @@ class App extends React.Component {
 		)
 	}
 
-	handleSubmit = (event) => {
+	loginUser = (url,newUser) => {
+		axios.post(url,newUser)
+		.then(
+			(response) => {
+				this.setState(
+					{
+						status: response.status,
+						token: response.data.token,
+						userID: response.data.id
+					}
+				)
+
+
+			}
+		)
+	}
+
+	handleSubmit = (event,role) => {
 
 		const { username, password } = this.state;
 
 		const newUser = { username, password }
-
-		// const setNewUser=(data)=>{
-		// 	newUser.username = data.username
-		// 	newUser.password = data.password
-		// }
-
-		//doubt	// fetch("http://localhost:8080/api/v1/registration", {
-		// 	method : "GET",
-		// 	mode : "cors",
-		// 	headers : {"Content-Type":"application/json"}
-		// })
-		// fetch("http://localhost:8080/api/v1/registration")  //token=[somekind of string] halera gareko thiyo postman ma. tyo string input liyera halnu parcha hola. [address]+string garera complete address banaunu parcha jasto cha.
-		// .then(response => response.json())
-		// .then(data => console.log(data))
-
-		// fetch("http://localhost:8080/api/v1/registration")
-		// .then((response)=>response.json())
-		// .then((data)=>console.log(data))
-
-		axios(
-			{
-				method: 'POST',
-				url: 'http://localhost:8080/api/v1/auth/login',
-				data: newUser
-			}
-		)
-			.then(
-				(response) => {
-					this.setState(
-						{
-							status: response.status,
-							token: response.data.token,
-							userID: response.data.id
-						}
-					)
-					// this.setState(
-					// 	{
-					// 		responseUsername : decoded.sub
-					// 	}
-					// )
-
-				}
-			)
-
-		// 	getToken = () => {
-		// 		return localStorage.getItem('USER_KEY');
-		// 	}
-
-		// axios(  TRY AGAIN
-		//   {
-		// 	  method : 'GET',
-		// 	  url : 'http://localhost:8080/api/v1/auth/userinfo',
-		// 	  headers:{
-		// 		  'Authorization' : 'Bearer' + getToken()
-		// 	  }
-		//   }
-		// )
-		//   .then(
-		// 	  (response) => console.log(response.data)
-		//   )
+		if(role === 'seller'){
+			this.loginUser('http://localhost:8080/api/v1/auth/adminLogin',newUser)
+		}else if(role === 'admin'){
+			this.loginUser('http://localhost:8080/api/v1/auth/superAdminLogin',newUser)
+		}else{
+			this.loginUser('http://localhost:8080/api/v1/auth/login',newUser)
+		}
+			
 
 		if (this.state.status === 200) {
 			this.handleSnackbar();
@@ -158,7 +127,6 @@ class App extends React.Component {
 			localStorage.setItem('loggedIn', true)
 		}
 
-		//  console.log(`username : ${this.state.username}\nPassword : ${this.state.password}\nRemember:${this.state.rememberMe}`)
 	}
 
 	handleRegister = (event) => {
@@ -210,6 +178,13 @@ class App extends React.Component {
 		localStorage.removeItem('cartItems')
 	}
 
+	isAuth = () => {
+		if (localStorage.getItem("token"))
+			return true
+		else
+			return false
+	}
+
 	
 	render() {
 		return (
@@ -228,6 +203,56 @@ class App extends React.Component {
 								/>
 							}
 						/>
+
+						<Route
+							path = '/LoginasSeller'
+							element = {
+								<LoginAsSeller 
+									data={this.state}
+									handleChange={this.handleChange}
+									handleSubmit={this.handleSubmit}
+									handleRegister={this.handleRegister}
+									emptyUsernameAndPwd={this.emptyUsernameAndPwd}
+								/>
+							}
+						/>
+						<Route
+							path = '/LoginAsAdmin'
+							element = {
+								<LoginAsAdmin 
+									data={this.state}
+									handleChange={this.handleChange}
+									handleSubmit={this.handleSubmit}
+									handleRegister={this.handleRegister}
+									emptyUsernameAndPwd={this.emptyUsernameAndPwd}
+								/>
+							}
+						/>
+
+						<Route 
+							path='/sellerDashboard'
+							element={
+								this.isAuth() ?
+								<SellerDashboard 					
+									handleLoggedOut={this.handleLoggedOut}
+								/>
+								:
+								<Navigate to='/LoginasSeller' />
+							}
+						/>
+
+						<Route 
+							path='/admin'
+							element={
+								this.isAuth() ?
+								<Admin 
+									handleLoggedOut={this.handleLoggedOut}
+								/>
+								:
+								<Navigate to='/LoginasAdmin' />
+						}
+						/>
+						
 						<Route
 							path='/*'
 							element={
@@ -237,17 +262,12 @@ class App extends React.Component {
 									/>
 							}
 						/>
-						<Route path='/sellerDashboard'
-							element={<SellerDashboard />}
-						/>
+						
 						<Route 
 							path='/forgotPassword' 
 							element={<ForgotPassword />}
 						/>
-						<Route 
-							path='/admin'
-							element={<Admin />}
-						/>
+						
 					</Routes>
 				</BrowserRouter>
 

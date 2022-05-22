@@ -58,15 +58,11 @@ export default function ScrollingProducts(props) {
                     products && products.map(
                         (product) => {
                             return <ProductCard
-                                id={product.id}
-                                name={product.productName}
-                                description={product.productDescription}
-                                category={product.productCategory}
-                                price={product.price}
-                                img={product.image}
+                                productItem = {product}
                                 handleProductClick={props.handleProductClick}
                                 key={product.id}
                                 handleAddToCart={props.handleAddToCart}
+                                
                             />
                         }
                     )

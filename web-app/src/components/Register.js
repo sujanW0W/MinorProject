@@ -33,7 +33,7 @@ function Register(props) {
                 </Avatar>
                 <h1 className='head'>Register</h1>
             </Grid>
-            <div style={marginStyle, { display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{margin: '5px 0px', display: 'flex', justifyContent: 'space-between' }}>
                 <TextField
                     variant='outlined'
                     name='firstName'
@@ -141,7 +141,6 @@ function Register(props) {
                 required={true}
                 style={marginStyle}
                 size = 'small'
-                className = 'numberField'
             />
 
             <TextField

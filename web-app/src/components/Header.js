@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import { IconButton, Button } from '@mui/material'
+import { IconButton } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeDecor from '../homedecorLogo.png'
