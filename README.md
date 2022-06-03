@@ -1,3 +1,6 @@
 # MinorProject
-Minor project by: Ajay, Ashish, Nibendra, Sujan
 
+The Minor Project of Bachelor's degree in Computer Engineering.
+
+
+Project Team : Ajay, Ashish, Nibendra, Sujan
